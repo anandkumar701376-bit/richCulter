@@ -20,3 +20,9 @@ class MediaResponse(MediaBase):
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+    
+
+class MediaUpdate(BaseModel):
+    media_type: str | None = None
+    url: str | None = None
+    title: str | None = None

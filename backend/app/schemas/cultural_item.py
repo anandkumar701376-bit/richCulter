@@ -30,3 +30,10 @@ class CulturalItemResponse(CulturalItemBase):
 class CulturalItemDetailsResponse(CulturalItemResponse):
     media: list[MediaResponse] = []
     sources: list[SourceResponse] = []
+    
+
+class CulturalItemUpdate(BaseModel):
+    state_id: uuid.UUID | None = None
+    category_id: uuid.UUID | None = None
+    title: str | None = None
+    description: str | None = None

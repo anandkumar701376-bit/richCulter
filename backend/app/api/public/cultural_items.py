@@ -8,6 +8,7 @@ from app.db.session import get_db
 from app.schemas.cultural_item import (
     CulturalItemResponse,
     CulturalItemCreate,
+    CulturalItemUpdate,
     CulturalItemDetailsResponse,
 )
 
@@ -16,6 +17,8 @@ from app.services.cultural_item_service import (
     get_cultural_items,
     create_cultural_item,
     get_cultural_item_details,
+    update_cultural_item,
+    delete_cultural_item,
 )
 
 
@@ -89,3 +92,47 @@ def create_item(
     db: Session = Depends(get_db),
 ):
     return create_cultural_item(db, item_data)
+
+
+
+
+@router.put(
+    "/{item_id}",
+    response_model=CulturalItemResponse,
+)
+def update_item(
+    item_id: UUID,
+    item_data: CulturalItemUpdate,
+    db: Session = Depends(get_db),
+):
+    item = update_cultural_item(db, item_id, item_data)
+
+    if item is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Cultural item not found",
+        )
+
+    return item
+
+
+
+
+
+@router.delete(
+    "/{item_id}",
+    status_code=204,
+)
+def delete_item(
+    item_id: UUID,
+    db: Session = Depends(get_db),
+):
+    deleted = delete_cultural_item(db, item_id)
+
+    if not deleted:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Cultural item not found",
+        )
+
+    return None
