@@ -3,7 +3,6 @@ import uuid
 
 from pydantic import BaseModel, ConfigDict
 
-
 from app.schemas.media import MediaResponse
 from app.schemas.source import SourceResponse
 
@@ -24,13 +23,21 @@ class CulturalItemResponse(CulturalItemBase):
     created_at: datetime
     updated_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)\
+    model_config = ConfigDict(from_attributes=True)
+
+
+class CulturalItemListResponse(BaseModel):
+    items: list[CulturalItemResponse]
+    page: int
+    limit: int
+    total: int
+    pages: int
 
 
 class CulturalItemDetailsResponse(CulturalItemResponse):
     media: list[MediaResponse] = []
     sources: list[SourceResponse] = []
-    
+
 
 class CulturalItemUpdate(BaseModel):
     state_id: uuid.UUID | None = None

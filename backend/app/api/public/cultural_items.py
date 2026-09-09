@@ -21,12 +21,9 @@ from app.services.cultural_item_service import (
     delete_cultural_item,
 )
 
-
 router = APIRouter(
-    prefix="/cultural-items",
     tags=["Cultural Items"],
 )
-
 
 @router.get(
     "",
@@ -81,19 +78,24 @@ def read_cultural_item(
 
     return item
 
-
 @router.post(
     "",
     response_model=CulturalItemResponse,
-    status_code=201,
+    status_code=status.HTTP_201_CREATED,
 )
 def create_item(
     item_data: CulturalItemCreate,
     db: Session = Depends(get_db),
 ):
-    return create_cultural_item(db, item_data)
+    item, error = create_cultural_item(db, item_data)
 
+    if error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=error,
+        )
 
+    return item
 
 
 @router.put(
@@ -105,19 +107,25 @@ def update_item(
     item_data: CulturalItemUpdate,
     db: Session = Depends(get_db),
 ):
-    item = update_cultural_item(db, item_id, item_data)
+    item, error = update_cultural_item(
+        db,
+        item_id,
+        item_data,
+    )
 
-    if item is None:
+    if error:
+        if error == "Cultural item not found":
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=error,
+            )
+
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Cultural item not found",
+            detail=error,
         )
 
     return item
-
-
-
-
 
 @router.delete(
     "/{item_id}",

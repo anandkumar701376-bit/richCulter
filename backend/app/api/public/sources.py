@@ -18,20 +18,45 @@ from app.services.source_service import (
     update_source,
     delete_source,
 )
-router = APIRouter()
+router = APIRouter(tags=["Sources"])
 
 
 @router.post(
     "",
     response_model=SourceResponse,
-    status_code=201,
+    status_code=status.HTTP_201_CREATED,
 )
 def create_source_item(
     source_data: SourceCreate,
     db: Session = Depends(get_db),
 ):
-    return create_source(db, source_data)
+    source, error = create_source(db, source_data)
 
+    if error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=error,
+        )
+
+    return source
+
+@router.get(
+    "/{source_id}",
+    response_model=SourceResponse,
+)
+def get_source_item(
+    source_id: uuid.UUID,
+    db: Session = Depends(get_db),
+):
+    source = get_source_by_id(db, source_id)
+
+    if source is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Source not found",
+        )
+
+    return source
 
 @router.get(
     "/cultural-item/{cultural_item_id}",
@@ -43,24 +68,35 @@ def get_item_sources(
 ):
     return get_sources_for_item(db, cultural_item_id)
 
-@router.put("/{source_id}", response_model=SourceResponse)
+
+@router.put(
+    "/{source_id}",
+    response_model=SourceResponse,
+)
 def update_source_item(
     source_id: uuid.UUID,
     source_data: SourceUpdate,
     db: Session = Depends(get_db),
 ):
-    source = update_source(db, source_id, source_data)
+    source, error = update_source(
+        db,
+        source_id,
+        source_data,
+    )
 
-    if source is None:
+    if error:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Source not found",
+            detail=error,
         )
 
     return source
 
 
-@router.delete("/{source_id}", status_code=204)
+@router.delete(
+    "/{source_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
 def delete_source_item(
     source_id: uuid.UUID,
     db: Session = Depends(get_db),

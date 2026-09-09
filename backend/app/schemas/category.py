@@ -1,5 +1,6 @@
+import uuid
+
 from datetime import datetime
-from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
 
@@ -9,8 +10,17 @@ class CategoryBase(BaseModel):
     description: str | None = None
 
 
+class CategoryCreate(CategoryBase):
+    pass
+
+
+class CategoryUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
+
+
 class CategoryResponse(CategoryBase):
-    id: UUID
+    id: uuid.UUID
     created_at: datetime
     updated_at: datetime
 

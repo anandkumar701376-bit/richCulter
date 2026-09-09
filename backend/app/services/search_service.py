@@ -34,4 +34,8 @@ def search_cultural_items(
             CulturalItem.category_id == category_id
         )
 
-    return items_query.order_by(CulturalItem.title).all()
+    return (
+        items_query
+        .order_by(CulturalItem.title)
+        .all()
+    )

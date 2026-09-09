@@ -1,10 +1,10 @@
 import uuid
 
-from fastapi import APIRouter, Depends,HTTPException,status
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.schemas.media import MediaCreate, MediaResponse,MediaUpdate
+from app.schemas.media import MediaCreate, MediaResponse, MediaUpdate
 from app.services.media_service import (
     create_media,
     get_media_for_item,
@@ -13,19 +13,27 @@ from app.services.media_service import (
     delete_media,
 )
 
-router = APIRouter()
+router = APIRouter(tags=["Media"])
 
 
 @router.post(
     "",
     response_model=MediaResponse,
-    status_code=201,
+    status_code=status.HTTP_201_CREATED,
 )
 def create_media_item(
     media_data: MediaCreate,
     db: Session = Depends(get_db),
 ):
-    return create_media(db, media_data)
+    media, error = create_media(db, media_data)
+
+    if error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=error,
+        )
+
+    return media
 
 
 @router.get(
@@ -38,13 +46,16 @@ def get_item_media(
 ):
     return get_media_for_item(db, cultural_item_id)
 
-@router.put("/{media_id}", response_model=MediaResponse)
-def update_media_item(
+
+@router.get(
+    "/{media_id}",
+    response_model=MediaResponse,
+)
+def get_media_item(
     media_id: uuid.UUID,
-    media_data: MediaUpdate,
     db: Session = Depends(get_db),
 ):
-    media = update_media(db, media_id, media_data)
+    media = get_media_by_id(db, media_id)
 
     if media is None:
         raise HTTPException(
@@ -54,8 +65,34 @@ def update_media_item(
 
     return media
 
+@router.put(
+    "/{media_id}",
+    response_model=MediaResponse,
+)
+def update_media_item(
+    media_id: uuid.UUID,
+    media_data: MediaUpdate,
+    db: Session = Depends(get_db),
+):
+    media, error = update_media(
+        db,
+        media_id,
+        media_data,
+    )
 
-@router.delete("/{media_id}", status_code=204)
+    if error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=error,
+        )
+
+    return media
+
+
+@router.delete(
+    "/{media_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
 def delete_media_item(
     media_id: uuid.UUID,
     db: Session = Depends(get_db),

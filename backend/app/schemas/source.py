@@ -13,9 +13,11 @@ class SourceCreate(BaseModel):
 
 
 class SourceUpdate(BaseModel):
+    cultural_item_id: uuid.UUID | None = None
     name: str | None = None
     url: str | None = None
     description: str | None = None
+    
 
 
 class SourceResponse(BaseModel):

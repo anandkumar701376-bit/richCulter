@@ -3,13 +3,16 @@ import uuid
 from sqlalchemy.orm import Session
 
 from app.models.cultural_item import CulturalItem
-from app.schemas.cultural_item import CulturalItemCreate
+from app.models.state import State
+from app.models.category import Category
 from app.schemas.cultural_item import CulturalItemCreate, CulturalItemUpdate
 
 def get_cultural_items(
     db: Session,
     state_id: uuid.UUID | None = None,
     category_id: uuid.UUID | None = None,
+    page: int = 1,
+    limit: int = 20,
 ):
     query = db.query(CulturalItem)
 
@@ -19,7 +22,19 @@ def get_cultural_items(
     if category_id:
         query = query.filter(CulturalItem.category_id == category_id)
 
-    return query.all()
+    total = query.count()
+
+    offset = (page - 1) * limit
+
+    items = (
+        query
+        .order_by(CulturalItem.title)
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    return items, total
 
 
 def get_cultural_item_by_id(
@@ -32,11 +47,28 @@ def get_cultural_item_by_id(
         .first()
     )
 
-
 def create_cultural_item(
     db: Session,
     item_data: CulturalItemCreate,
 ):
+    state = (
+        db.query(State)
+        .filter(State.id == item_data.state_id)
+        .first()
+    )
+
+    if state is None:
+        return None, "State not found"
+
+    category = (
+        db.query(Category)
+        .filter(Category.id == item_data.category_id)
+        .first()
+    )
+
+    if category is None:
+        return None, "Category not found"
+
     item = CulturalItem(
         state_id=item_data.state_id,
         category_id=item_data.category_id,
@@ -48,7 +80,7 @@ def create_cultural_item(
     db.commit()
     db.refresh(item)
 
-    return item
+    return item, None
 
 def get_cultural_item_details(
     db: Session,
@@ -69,12 +101,30 @@ def update_cultural_item(
     item = get_cultural_item_by_id(db, cultural_item_id)
 
     if item is None:
-        return None
+        return None, "Cultural item not found"
 
     if item_data.state_id is not None:
+        state = (
+            db.query(State)
+            .filter(State.id == item_data.state_id)
+            .first()
+        )
+
+        if state is None:
+            return None, "State not found"
+
         item.state_id = item_data.state_id
 
     if item_data.category_id is not None:
+        category = (
+            db.query(Category)
+            .filter(Category.id == item_data.category_id)
+            .first()
+        )
+
+        if category is None:
+            return None, "Category not found"
+
         item.category_id = item_data.category_id
 
     if item_data.title is not None:
@@ -86,9 +136,7 @@ def update_cultural_item(
     db.commit()
     db.refresh(item)
 
-    return item
-
-
+    return item, None
 
 def delete_cultural_item(
     db: Session,

@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy.orm import Session
 
 from app.models.source import Source
+from app.models.cultural_item import CulturalItem
 from app.schemas.source import SourceCreate
 
 
@@ -23,6 +24,16 @@ def get_source_by_id(db: Session, source_id: uuid.UUID):
 
 
 def create_source(db: Session, source_data: SourceCreate):
+    # Check whether cultural item exists
+    item = (
+        db.query(CulturalItem)
+        .filter(CulturalItem.id == source_data.cultural_item_id)
+        .first()
+    )
+
+    if item is None:
+        return None, "Cultural item not found"
+
     source = Source(
         cultural_item_id=source_data.cultural_item_id,
         name=source_data.name,
@@ -34,14 +45,27 @@ def create_source(db: Session, source_data: SourceCreate):
     db.commit()
     db.refresh(source)
 
-    return source
+    return source, None
 
 
 def update_source(db: Session, source_id: uuid.UUID, source_data):
     source = get_source_by_id(db, source_id)
 
     if source is None:
-        return None
+        return None, "Source not found"
+
+    # Validate cultural item if it is being changed
+    if source_data.cultural_item_id is not None:
+        item = (
+            db.query(CulturalItem)
+            .filter(
+                CulturalItem.id == source_data.cultural_item_id
+            )
+            .first()
+        )
+
+        if item is None:
+            return None, "Cultural item not found"
 
     update_data = source_data.model_dump(exclude_unset=True)
 
@@ -51,7 +75,7 @@ def update_source(db: Session, source_id: uuid.UUID, source_data):
     db.commit()
     db.refresh(source)
 
-    return source
+    return source, None
 
 
 def delete_source(db: Session, source_id: uuid.UUID):

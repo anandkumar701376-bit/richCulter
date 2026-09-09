@@ -23,6 +23,7 @@ class MediaResponse(MediaBase):
     
 
 class MediaUpdate(BaseModel):
+    cultural_item_id: uuid.UUID | None = None
     media_type: str | None = None
     url: str | None = None
     title: str | None = None

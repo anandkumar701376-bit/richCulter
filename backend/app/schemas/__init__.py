@@ -1,5 +1,10 @@
 from app.schemas.state import StateBase, StateResponse
-from app.schemas.category import CategoryBase, CategoryResponse
+from app.schemas.category import (
+    CategoryBase,
+    CategoryCreate,
+    CategoryUpdate,
+    CategoryResponse,
+)
 from app.schemas.cultural_item import (
     CulturalItemBase,
     CulturalItemCreate,
