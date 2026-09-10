@@ -12,11 +12,13 @@ def get_existing_cultural_item_id():
 
     assert response.status_code == 200
 
-    items = response.json()
+    data = response.json()
+    items = data["items"]
 
     assert len(items) > 0
 
     return items[0]["id"]
+
 
 
 def test_get_sources_for_nonexistent_cultural_item():
@@ -221,4 +223,117 @@ def test_delete_nonexistent_source():
         f"/api/sources/{INVALID_UUID}"
     )
 
+    assert response.status_code == 404\
+        
+        
+
+def test_get_nonexistent_source():
+    response = client.get(
+        f"/api/sources/{INVALID_UUID}"
+    )
+
     assert response.status_code == 404
+    assert response.json()["detail"] == "Source not found"
+
+
+def test_create_source_with_all_fields():
+    cultural_item_id = get_existing_cultural_item_id()
+
+    response = client.post(
+        "/api/sources",
+        json={
+            "cultural_item_id": cultural_item_id,
+            "name": "Complete Source Test",
+            "url": "https://example.com/complete",
+            "description": "Complete source test description",
+        },
+    )
+
+    assert response.status_code == 201
+
+    data = response.json()
+
+    assert data["id"]
+    assert data["cultural_item_id"] == cultural_item_id
+    assert data["name"] == "Complete Source Test"
+    assert data["url"] == "https://example.com/complete"
+    assert data["description"] == "Complete source test description"
+    assert data["created_at"]
+
+    source_id = data["id"]
+
+    # Cleanup
+    delete_response = client.delete(
+        f"/api/sources/{source_id}"
+    )
+
+    assert delete_response.status_code == 204
+
+
+def test_create_source_without_optional_fields():
+    cultural_item_id = get_existing_cultural_item_id()
+
+    response = client.post(
+        "/api/sources",
+        json={
+            "cultural_item_id": cultural_item_id,
+            "name": "Minimal Source Test",
+        },
+    )
+
+    assert response.status_code == 201
+
+    data = response.json()
+
+    assert data["cultural_item_id"] == cultural_item_id
+    assert data["name"] == "Minimal Source Test"
+    assert data["url"] is None
+    assert data["description"] is None
+
+    source_id = data["id"]
+
+    # Cleanup
+    delete_response = client.delete(
+        f"/api/sources/{source_id}"
+    )
+
+    assert delete_response.status_code == 204
+
+
+def test_get_sources_for_cultural_item():
+    cultural_item_id = get_existing_cultural_item_id()
+
+    create_response = client.post(
+        "/api/sources",
+        json={
+            "cultural_item_id": cultural_item_id,
+            "name": "List Source Test",
+            "url": "https://example.com/list",
+            "description": "List test",
+        },
+    )
+
+    assert create_response.status_code == 201
+
+    source_id = create_response.json()["id"]
+
+    response = client.get(
+        f"/api/sources/cultural-item/{cultural_item_id}"
+    )
+
+    assert response.status_code == 200
+
+    sources = response.json()
+
+    assert isinstance(sources, list)
+    assert any(
+        source["id"] == source_id
+        for source in sources
+    )
+
+    # Cleanup
+    delete_response = client.delete(
+        f"/api/sources/{source_id}"
+    )
+
+    assert delete_response.status_code == 204

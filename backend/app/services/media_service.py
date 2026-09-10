@@ -6,6 +6,8 @@ from app.models.media import Media
 from app.models.cultural_item import CulturalItem
 from app.schemas.media import MediaCreate
 
+from app.services.media_storage_service import get_media_url
+
 
 def get_media_for_item(db: Session, cultural_item_id: uuid.UUID):
     return (
@@ -35,12 +37,14 @@ def create_media(db: Session, media_data: MediaCreate):
         return None, "Cultural item not found"
 
     media = Media(
-        cultural_item_id=media_data.cultural_item_id,
-        media_type=media_data.media_type,
-        url=media_data.url,
-        title=media_data.title,
-    )
-
+    cultural_item_id=media_data.cultural_item_id,
+    media_type=media_data.media_type,
+    storage_type=media_data.storage_type,
+    storage_key=media_data.storage_key,
+    url=media_data.url,
+    title=media_data.title,
+)
+    
     db.add(media)
     db.commit()
     db.refresh(media)
@@ -86,3 +90,21 @@ def delete_media(db: Session, media_id: uuid.UUID):
     db.commit()
 
     return True
+
+
+def media_to_response(media: Media):
+    return {
+        "id": media.id,
+        "cultural_item_id": media.cultural_item_id,
+        "media_type": media.media_type,
+        "url": media.url,
+        "storage_type": media.storage_type,
+        "storage_key": media.storage_key,
+        "title": media.title,
+        "created_at": media.created_at,
+        "media_url": get_media_url(
+            storage_type=media.storage_type,
+            storage_key=media.storage_key,
+            url=media.url,
+        ),
+    }

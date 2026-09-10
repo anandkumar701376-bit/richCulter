@@ -1,7 +1,7 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
-from sqlalchemy import DateTime, ForeignKey, String,Text
+from sqlalchemy import DateTime, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -28,9 +28,20 @@ class Media(Base):
         nullable=False,
     )
 
-    url: Mapped[str] = mapped_column(
-        Text,
+    storage_type: Mapped[str] = mapped_column(
+        String(50),
         nullable=False,
+        default="external",
+    )
+
+    storage_key: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
+
+    url: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
     )
 
     title: Mapped[str | None] = mapped_column(
@@ -40,7 +51,7 @@ class Media(Base):
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=datetime.utcnow,
+        default=lambda: datetime.now(timezone.utc),
         nullable=False,
     )
 

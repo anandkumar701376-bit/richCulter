@@ -5,7 +5,12 @@ from sqlalchemy.orm import Session
 from app.models.cultural_item import CulturalItem
 from app.models.state import State
 from app.models.category import Category
-from app.schemas.cultural_item import CulturalItemCreate, CulturalItemUpdate
+from app.schemas.cultural_item import (
+    CulturalItemCreate,
+    CulturalItemUpdate,
+)
+from app.services.media_service import media_to_response
+
 
 def get_cultural_items(
     db: Session,
@@ -17,10 +22,14 @@ def get_cultural_items(
     query = db.query(CulturalItem)
 
     if state_id:
-        query = query.filter(CulturalItem.state_id == state_id)
+        query = query.filter(
+            CulturalItem.state_id == state_id
+        )
 
     if category_id:
-        query = query.filter(CulturalItem.category_id == category_id)
+        query = query.filter(
+            CulturalItem.category_id == category_id
+        )
 
     total = query.count()
 
@@ -46,6 +55,7 @@ def get_cultural_item_by_id(
         .filter(CulturalItem.id == cultural_item_id)
         .first()
     )
+
 
 def create_cultural_item(
     db: Session,
@@ -82,23 +92,45 @@ def create_cultural_item(
 
     return item, None
 
+
 def get_cultural_item_details(
     db: Session,
     cultural_item_id: uuid.UUID,
 ):
-    return (
+    item = (
         db.query(CulturalItem)
         .filter(CulturalItem.id == cultural_item_id)
         .first()
     )
-    
+
+    if item is None:
+        return None
+
+    return {
+        "id": item.id,
+        "state_id": item.state_id,
+        "category_id": item.category_id,
+        "title": item.title,
+        "description": item.description,
+        "created_at": item.created_at,
+        "updated_at": item.updated_at,
+        "media": [
+            media_to_response(media)
+            for media in item.media
+        ],
+        "sources": item.sources,
+    }
+
 
 def update_cultural_item(
     db: Session,
     cultural_item_id: uuid.UUID,
     item_data: CulturalItemUpdate,
 ):
-    item = get_cultural_item_by_id(db, cultural_item_id)
+    item = get_cultural_item_by_id(
+        db,
+        cultural_item_id,
+    )
 
     if item is None:
         return None, "Cultural item not found"
@@ -138,11 +170,15 @@ def update_cultural_item(
 
     return item, None
 
+
 def delete_cultural_item(
     db: Session,
     cultural_item_id: uuid.UUID,
 ):
-    item = get_cultural_item_by_id(db, cultural_item_id)
+    item = get_cultural_item_by_id(
+        db,
+        cultural_item_id,
+    )
 
     if item is None:
         return False

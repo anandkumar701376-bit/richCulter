@@ -5,12 +5,15 @@ from sqlalchemy.orm import Session
 
 from app.db.session import get_db
 
+
 from app.schemas.cultural_item import (
     CulturalItemResponse,
     CulturalItemCreate,
     CulturalItemUpdate,
     CulturalItemDetailsResponse,
+    CulturalItemListResponse,
 )
+
 
 from app.services.cultural_item_service import (
     get_cultural_item_by_id,
@@ -25,20 +28,50 @@ router = APIRouter(
     tags=["Cultural Items"],
 )
 
+
+
 @router.get(
     "",
-    response_model=list[CulturalItemResponse],
+    response_model=CulturalItemListResponse,
 )
 def read_cultural_items(
     state_id: UUID | None = None,
     category_id: UUID | None = None,
+    page: int = 1,
+    limit: int = 20,
     db: Session = Depends(get_db),
 ):
-    return get_cultural_items(
+    if page < 1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="page must be greater than or equal to 1",
+        )
+
+    if limit < 1 or limit > 100:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="limit must be between 1 and 100",
+        )
+
+    items, total = get_cultural_items(
         db,
         state_id=state_id,
         category_id=category_id,
+        page=page,
+        limit=limit,
     )
+
+    pages = (total + limit - 1) // limit
+
+    return {
+        "items": items,
+        "page": page,
+        "limit": limit,
+        "total": total,
+        "pages": pages,
+    }
+    
+    
 
 
 @router.get(
