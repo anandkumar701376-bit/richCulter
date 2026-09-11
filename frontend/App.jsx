@@ -1,3 +1,5 @@
+import DataEntryLayout from "./src/layoutes/DataEntryLayout";
+
 export default function App() {
-  return <h1>Culter</h1>;
+  return <DataEntryLayout />;
 }

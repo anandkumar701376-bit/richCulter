@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #f5f6f8;
+  color: #20242b;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #17191d;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 10px 28px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #17191d;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.brand span {
+  display: block;
+  margin-top: 2px;
+  color: #9da3ad;
+  font-size: 12px;
+}
+
+.navigation {
+  flex: 1;
+}
+
+.navigation-title {
+  margin: 8px 10px 10px;
+  color: #777e89;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.nav-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #aeb4bd;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 5px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: #22252b;
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background: #ffffff;
+  color: #17191d;
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  border-top: 1px solid #2c3036;
+  padding: 18px 10px 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-footer strong {
+  display: block;
+  font-size: 12px;
+}
+
+.sidebar-footer span {
+  display: block;
+  margin-top: 3px;
+  color: #858c96;
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #35b879;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar {
+  min-height: 86px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-label {
+  color: #8a9099;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.topbar h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #565d67;
+  font-size: 13px;
+}
+
+.page-content {
+  padding: 32px;
+}
+
+.coming-soon {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 32px;
+}
+
+.coming-soon h2 {
+  margin-top: 0;
+}
+
+.coming-soon p {
+  color: #6b7280;
+}
