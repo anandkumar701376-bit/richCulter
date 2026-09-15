@@ -12,12 +12,15 @@ from app.schemas.source import (
 )
 
 from app.services.source_service import (
+    get_all_sources,
     create_source,
     get_sources_for_item,
     get_source_by_id,
     update_source,
     delete_source,
 )
+
+
 router = APIRouter(tags=["Sources"])
 
 
@@ -110,3 +113,13 @@ def delete_source_item(
         )
 
     return None
+
+
+@router.get(
+    "",
+    response_model=list[SourceResponse],
+)
+def get_all_source_items(
+    db: Session = Depends(get_db),
+):
+    return get_all_sources(db)

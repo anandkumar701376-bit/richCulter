@@ -13,6 +13,7 @@ from app.schemas.media import (
 )
 
 from app.services.media_service import (
+    get_all_media,
     create_media,
     get_media_for_item,
     get_media_by_id,
@@ -206,3 +207,18 @@ async def upload_media_file(
         "created_at": media.created_at,
         "media_url": media_url,
     }
+    
+
+@router.get(
+    "",
+    response_model=list[MediaResponse],
+)
+def get_all_media_items(
+    db: Session = Depends(get_db),
+):
+    media_items = get_all_media(db)
+
+    return [
+        media_to_response(media)
+        for media in media_items
+    ]

@@ -7,6 +7,14 @@ from app.models.cultural_item import CulturalItem
 from app.schemas.source import SourceCreate
 
 
+def get_all_sources(db: Session):
+    return (
+        db.query(Source)
+        .order_by(Source.created_at.desc())
+        .all()
+    )
+
+
 def get_sources_for_item(db: Session, cultural_item_id: uuid.UUID):
     return (
         db.query(Source)

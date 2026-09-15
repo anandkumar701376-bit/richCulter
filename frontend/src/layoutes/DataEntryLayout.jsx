@@ -1,15 +1,36 @@
 import { useState } from "react";
+
 import Dashboard from "../pages/dashboard/Dashboard";
+import CulturalItems from "../pages/culturalItems/CulturalItems";
+import Media from "../pages/media/Media";
+import Sources from "../pages/sources/Sources";
+
 import "./DataEntryLayout.css";
 
 export default function DataEntryLayout() {
   const [activePage, setActivePage] = useState("dashboard");
 
   const navigation = [
-    { id: "dashboard", label: "Dashboard", icon: "�" },
-    { id: "cultural-items", label: "Cultural Items", icon: "?" },
-    { id: "media", label: "Media", icon: "?" },
-    { id: "sources", label: "Sources", icon: "?" },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: "⌂",
+    },
+    {
+      id: "cultural-items",
+      label: "Cultural Items",
+      icon: "◆",
+    },
+    {
+      id: "media",
+      label: "Media",
+      icon: "▣",
+    },
+    {
+      id: "sources",
+      label: "Sources",
+      icon: "◈",
+    },
   ];
 
   function renderPage() {
@@ -18,28 +39,13 @@ export default function DataEntryLayout() {
         return <Dashboard />;
 
       case "cultural-items":
-        return (
-          <div className="coming-soon">
-            <h2>Cultural Items</h2>
-            <p>The cultural item data-entry screen is coming next.</p>
-          </div>
-        );
+        return <CulturalItems />;
 
       case "media":
-        return (
-          <div className="coming-soon">
-            <h2>Media</h2>
-            <p>The media management screen is coming next.</p>
-          </div>
-        );
+        return <Media />;
 
       case "sources":
-        return (
-          <div className="coming-soon">
-            <h2>Sources</h2>
-            <p>The source management screen is coming next.</p>
-          </div>
-        );
+        return <Sources />;
 
       default:
         return <Dashboard />;
@@ -51,6 +57,7 @@ export default function DataEntryLayout() {
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-mark">C</div>
+
           <div>
             <h1>Culture</h1>
             <span>Data Entry</span>
@@ -58,7 +65,9 @@ export default function DataEntryLayout() {
         </div>
 
         <nav className="navigation">
-          <p className="navigation-title">WORKSPACE</p>
+          <p className="navigation-title">
+            WORKSPACE
+          </p>
 
           {navigation.map((item) => (
             <button
@@ -66,9 +75,14 @@ export default function DataEntryLayout() {
               className={`nav-item ${
                 activePage === item.id ? "active" : ""
               }`}
-              onClick={() => setActivePage(item.id)}
+              onClick={() =>
+                setActivePage(item.id)
+              }
             >
-              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-icon">
+                {item.icon}
+              </span>
+
               <span>{item.label}</span>
             </button>
           ))}
@@ -76,6 +90,7 @@ export default function DataEntryLayout() {
 
         <div className="sidebar-footer">
           <div className="status-dot" />
+
           <div>
             <strong>Backend Connected</strong>
             <span>FastAPI</span>
@@ -86,7 +101,10 @@ export default function DataEntryLayout() {
       <main className="main-content">
         <header className="topbar">
           <div>
-            <span className="topbar-label">CULTURAL HERITAGE</span>
+            <span className="topbar-label">
+              CULTURAL HERITAGE
+            </span>
+
             <h2>Data Entry Workspace</h2>
           </div>
 
