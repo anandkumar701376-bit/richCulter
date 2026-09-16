@@ -1,0 +1,687 @@
+/* ============================================================
+   INDIA MAP
+   ============================================================ */
+
+.india-map-wrapper {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   MAP STAGE
+   ============================================================ */
+
+.india-map-stage {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   LIBRARY CONTAINER
+   ============================================================ */
+
+/*
+ * The library itself creates:
+ *
+ * .india-map-container
+ *
+ * and sets width/height to 100%.
+ *
+ * We keep the container inside our controlled viewport.
+ */
+
+.india-map-stage
+.india-map-container {
+  width: 100% !important;
+  height: 100% !important;
+
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  max-width: 100% !important;
+  max-height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   ACTUAL INDIA SVG
+   ============================================================ */
+
+/*
+ * IMPORTANT:
+ *
+ * Do NOT set:
+ *
+ * height: 100%;
+ * width: 100%;
+ *
+ * without a viewBox.
+ *
+ * IndiaMap.jsx now adds the correct viewBox.
+ *
+ * The SVG can therefore safely use contain-style sizing.
+ */
+
+.india-map-stage
+.india-map-container
+svg {
+  display: block !important;
+
+  width: min(100%, 390px) !important;
+  height: min(100%, 445px) !important;
+
+  max-width: 100% !important;
+  max-height: 100% !important;
+
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  margin: 0 auto !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box;
+
+  /*
+   * Keep the whole SVG visible.
+   */
+  object-fit: contain;
+}
+
+
+/* ============================================================
+   INDIA STATES / UTs
+   ============================================================ */
+
+.india-map-stage
+.india-map-container
+path {
+  cursor: pointer;
+
+  transition:
+    fill 0.18s ease,
+    stroke 0.18s ease,
+    filter 0.18s ease;
+}
+
+
+/* ============================================================
+   STATE HOVER
+   ============================================================ */
+
+.india-map-stage
+.india-map-container
+path:hover {
+  fill: #287eb4 !important;
+
+  opacity: 1;
+
+  filter:
+    drop-shadow(
+      0 3px 5px
+      rgba(27, 83, 119, 0.25)
+    );
+}
+
+
+/* ============================================================
+   SELECTED STATE INDICATOR
+   ============================================================ */
+
+.selected-state-indicator {
+  position: absolute;
+
+  left: 50%;
+  bottom: 8px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 13px;
+
+  border:
+    1px solid #c7dceb;
+
+  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color: #173f62;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 18px
+    rgba(22, 57, 89, 0.12);
+
+  white-space: nowrap;
+
+  z-index: 30;
+}
+
+
+.selected-state-dot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #287fc1;
+}
+
+
+/* ============================================================
+   HOVER CARD
+   ============================================================ */
+
+.map-hover-card {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  min-width: 135px;
+
+  padding: 10px 12px;
+
+  border:
+    1px solid #d7e3ed;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  box-shadow:
+    0 8px 22px
+    rgba(17, 55, 86, 0.12);
+
+  pointer-events: none;
+
+  z-index: 40;
+}
+
+
+.map-hover-card strong {
+  display: block;
+
+  color: #173d60;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 14px;
+}
+
+
+.map-hover-card span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #5581a1;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.map-hover-card small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #82919f;
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.map-loading-message {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #718395;
+
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .india-map-stage
+  .india-map-container
+  svg {
+    width: min(100%, 350px) !important;
+    height: min(100%, 400px) !important;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+  .india-map-wrapper {
+    min-height: 330px;
+  }
+
+  .india-map-stage {
+    min-height: 330px;
+  }
+
+  .india-map-stage
+  .india-map-container
+  svg {
+    width: min(100%, 300px) !important;
+    height: min(100%, 340px) !important;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 500px) {
+
+  .india-map-wrapper {
+    min-height: 290px;
+  }
+
+  .india-map-stage {
+    min-height: 290px;
+  }
+
+  .india-map-stage
+  .india-map-container
+  svg {
+    width: min(100%, 260px) !important;
+    height: min(100%, 300px) !important;
+  }
+
+
+  .map-hover-card {
+    display: none;
+  }
+
+
+  .selected-state-indicator {
+    bottom: 3px;
+
+    font-size: 9px;
+
+    padding: 6px 10px;
+  }
+
+}
+
+/* ============================================================
+   ISLAND TERRITORIES
+   ============================================================ */
+
+.island-territories {
+  position: absolute;
+
+  right: 12px;
+  bottom: 12px;
+
+  width: 205px;
+
+  padding: 10px;
+
+  border:
+    1px solid #d6e3ed;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 8px 24px
+    rgba(18, 55, 83, 0.12);
+
+  backdrop-filter: blur(6px);
+
+  z-index: 60;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.island-territories-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    2px 2px 8px;
+
+  margin-bottom: 4px;
+
+  border-bottom:
+    1px solid #e4edf3;
+}
+
+
+.island-icon {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #e9f4fa;
+
+  font-size: 14px;
+}
+
+
+.island-territories-header strong {
+  display: block;
+
+  color: #173d60;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 12px;
+
+  line-height: 1.2;
+}
+
+
+.island-territories-header small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #7b8c9a;
+
+  font-size: 8px;
+
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   ISLAND BUTTON
+   ============================================================ */
+
+.island-territory-button {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 8px 6px;
+
+  margin-top: 4px;
+
+  border: 1px solid transparent;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+
+.island-territory-button:hover {
+  background: #f1f7fb;
+
+  border-color: #d5e5ef;
+
+  transform: translateX(1px);
+}
+
+
+.island-territory-button.active {
+  background: #e9f4fb;
+
+  border-color: #bdd9e9;
+}
+
+
+/* ============================================================
+   ISLAND MARKER
+   ============================================================ */
+
+.island-marker {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #dcecf7;
+
+  color: #287eb4;
+
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   TEXT
+   ============================================================ */
+
+.island-territory-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.island-territory-info strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: #234c6d;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+.island-territory-info small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #8293a0;
+
+  font-size: 8px;
+
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   ARROW
+   ============================================================ */
+
+.island-arrow {
+  flex-shrink: 0;
+
+  color: #6d8ba2;
+
+  font-size: 13px;
+
+  transition:
+    transform 0.18s ease;
+}
+
+
+.island-territory-button:hover
+.island-arrow {
+  transform: translateX(2px);
+
+  color: #287eb4;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .island-territories {
+    width: 190px;
+
+    right: 8px;
+    bottom: 8px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .island-territories {
+    position: relative;
+
+    right: auto;
+    bottom: auto;
+
+    width: 100%;
+
+    margin-top: 8px;
+
+    box-shadow: none;
+
+    backdrop-filter: none;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .island-territory-info strong {
+    font-size: 9px;
+  }
+
+}

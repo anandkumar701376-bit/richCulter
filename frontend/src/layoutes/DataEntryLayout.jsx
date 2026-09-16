@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-import Dashboard from "../pages/dashboard/Dashboard";
-import CulturalItems from "../pages/culturalItems/CulturalItems";
-import Media from "../pages/media/Media";
-import Sources from "../pages/sources/Sources";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import CulturalItems from "../pages/CulturalItems/CulturalItems";
+import Media from "../pages/Media/Media";
+import Sources from "../pages/Sources/Sources";
+import States from "../pages/States/States";
+import Categories from "../pages/Categories/Categories";
 
 import "./DataEntryLayout.css";
 
@@ -11,32 +13,24 @@ export default function DataEntryLayout() {
   const [activePage, setActivePage] = useState("dashboard");
 
   const navigation = [
-    {
-      id: "dashboard",
-      label: "Dashboard",
-      icon: "⌂",
-    },
-    {
-      id: "cultural-items",
-      label: "Cultural Items",
-      icon: "◆",
-    },
-    {
-      id: "media",
-      label: "Media",
-      icon: "▣",
-    },
-    {
-      id: "sources",
-      label: "Sources",
-      icon: "◈",
-    },
+    { id: "dashboard", label: "Dashboard", icon: "⌂" },
+    { id: "states", label: "States & UTs", icon: "◎" },
+    { id: "categories", label: "Categories", icon: "◆" },
+    { id: "cultural-items", label: "Cultural Items", icon: "◇" },
+    { id: "media", label: "Media", icon: "▣" },
+    { id: "sources", label: "Sources", icon: "◈" },
   ];
 
   function renderPage() {
     switch (activePage) {
       case "dashboard":
         return <Dashboard />;
+
+      case "states":
+        return <States />;
+
+      case "categories":
+        return <Categories />;
 
       case "cultural-items":
         return <CulturalItems />;
@@ -54,7 +48,9 @@ export default function DataEntryLayout() {
 
   return (
     <div className="app-shell">
+
       <aside className="sidebar">
+
         <div className="brand">
           <div className="brand-mark">C</div>
 
@@ -65,6 +61,7 @@ export default function DataEntryLayout() {
         </div>
 
         <nav className="navigation">
+
           <p className="navigation-title">
             WORKSPACE
           </p>
@@ -83,41 +80,62 @@ export default function DataEntryLayout() {
                 {item.icon}
               </span>
 
-              <span>{item.label}</span>
+              <span>
+                {item.label}
+              </span>
             </button>
           ))}
+
         </nav>
 
         <div className="sidebar-footer">
+
           <div className="status-dot" />
 
           <div>
-            <strong>Backend Connected</strong>
-            <span>FastAPI</span>
+            <strong>
+              Backend Connected
+            </strong>
+
+            <span>
+              FastAPI
+            </span>
           </div>
+
         </div>
+
       </aside>
 
       <main className="main-content">
+
         <header className="topbar">
+
           <div>
             <span className="topbar-label">
               CULTURAL HERITAGE
             </span>
 
-            <h2>Data Entry Workspace</h2>
+            <h2>
+              Data Entry Workspace
+            </h2>
           </div>
 
           <div className="connection-status">
+
             <span className="status-dot" />
+
             API Online
+
           </div>
+
         </header>
 
         <section className="page-content">
           {renderPage()}
         </section>
+
       </main>
+
     </div>
   );
 }
