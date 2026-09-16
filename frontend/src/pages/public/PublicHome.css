@@ -1164,3 +1164,53 @@
     font-size: 23px;
   }
 }
+
+
+/* =====================================================
+   STATE DETAILS - LOADING
+   ===================================================== */
+
+.state-items-loading {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #dfe8ef;
+  border-radius: 10px;
+  background: #fbfdfe;
+  text-align: center;
+}
+
+.state-items-loading p {
+  margin: 0;
+  color: #7b8c99;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.state-loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #dbeaf3;
+  border-top-color: #347aaa;
+  border-radius: 50%;
+  animation: stateDetailsSpin 0.8s linear infinite;
+}
+
+@keyframes stateDetailsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.state-cultural-card {
+  cursor: pointer;
+}
+
+.state-cultural-card:focus-visible {
+  outline: 2px solid #347aaa;
+  outline-offset: 2px;
+}

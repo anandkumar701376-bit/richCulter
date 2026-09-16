@@ -1,0 +1,559 @@
+.cultural-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 35px;
+}
+
+
+/* =====================================================
+   BACK
+   ===================================================== */
+
+.cultural-detail-back {
+  margin-bottom: 14px;
+  padding: 7px 0;
+
+  border: none;
+  background: transparent;
+
+  color: #347aaa;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.cultural-detail-back:hover {
+  color: #174f78;
+}
+
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.cultural-detail-error {
+  margin-bottom: 12px;
+  padding: 10px 13px;
+
+  border: 1px solid #efd3d3;
+  border-radius: 8px;
+
+  background: #fff8f8;
+  color: #a34b4b;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.cultural-detail-hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(320px, 0.9fr)
+    minmax(360px, 1.1fr);
+
+  gap: 24px;
+
+  padding: 18px;
+
+  border: 1px solid #d8e3ee;
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 7px 24px rgba(22, 57, 89, 0.07);
+}
+
+
+/* =====================================================
+   MAIN IMAGE
+   ===================================================== */
+
+.cultural-detail-image {
+  min-height: 360px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dceaf5,
+      #f0f6f9
+    );
+}
+
+.cultural-detail-image img {
+  width: 100%;
+  height: 100%;
+
+  min-height: 360px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.cultural-detail-image-empty {
+  color: #5686a7;
+  font-size: 45px;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.cultural-detail-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 12px;
+}
+
+.cultural-detail-label {
+  color: #5e8daf;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+.cultural-detail-main h1 {
+  margin: 8px 0;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+}
+
+.cultural-detail-location {
+  margin-bottom: 13px;
+
+  color: #5d7890;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cultural-detail-description {
+  max-width: 580px;
+
+  margin: 0;
+
+  color: #687b8a;
+
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+
+/* =====================================================
+   CATEGORY
+   ===================================================== */
+
+.cultural-detail-category {
+  width: fit-content;
+
+  margin-top: 20px;
+  padding: 10px 14px;
+
+  border: 1px solid #dbe7ef;
+  border-radius: 9px;
+
+  background: #f7fbfd;
+}
+
+.cultural-detail-category span {
+  display: block;
+
+  color: #7093ac;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.cultural-detail-category strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #24577d;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   CONTENT SECTIONS
+   ===================================================== */
+
+.cultural-detail-section {
+  margin-top: 17px;
+
+  padding: 20px;
+
+  border: 1px solid #dce6ee;
+  border-radius: 13px;
+
+  background: white;
+}
+
+.detail-section-label {
+  color: #6390b1;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.cultural-detail-section h2 {
+  margin: 5px 0 9px;
+
+  color: #1b4466;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+.cultural-detail-section > p {
+  margin: 0;
+
+  color: #6e7f8e;
+
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+
+/* =====================================================
+   MEDIA
+   ===================================================== */
+
+.cultural-media-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-top: 13px;
+}
+
+.cultural-media-card {
+  overflow: hidden;
+
+  border: 1px solid #dce6ee;
+  border-radius: 10px;
+
+  background: #fbfdfe;
+}
+
+.cultural-media-card img {
+  width: 100%;
+  height: 170px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.cultural-media-card p {
+  margin: 0;
+  padding: 9px;
+
+  color: #657888;
+
+  font-size: 10px;
+}
+
+.media-placeholder {
+  height: 170px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #edf5f9;
+
+  color: #4f7e9e;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   SOURCES
+   ===================================================== */
+
+.cultural-sources {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin-top: 13px;
+}
+
+.cultural-source-card {
+  display: flex;
+
+  gap: 11px;
+
+  padding: 12px;
+
+  border: 1px solid #dce6ee;
+  border-radius: 9px;
+
+  background: #fbfdfe;
+}
+
+.source-icon {
+  width: 35px;
+  height: 35px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e7f1f8;
+
+  color: #347aaa;
+
+  font-size: 16px;
+}
+
+.cultural-source-card strong {
+  color: #245271;
+
+  font-size: 12px;
+}
+
+.cultural-source-card p {
+  margin: 4px 0;
+
+  color: #778895;
+
+  font-size: 10px;
+}
+
+.cultural-source-card a {
+  color: #347aaa;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.cultural-source-card a:hover {
+  text-decoration: underline;
+}
+
+.no-cultural-sources {
+  margin-top: 12px;
+  padding: 20px;
+
+  border: 1px dashed #cad9e5;
+  border-radius: 9px;
+
+  color: #84929e;
+
+  text-align: center;
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.cultural-detail-loading {
+  min-height: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.detail-loading-spinner {
+  width: 32px;
+  height: 32px;
+
+  margin-bottom: 13px;
+
+  border: 3px solid #dceaf2;
+  border-top-color: #347aaa;
+
+  border-radius: 50%;
+
+  animation:
+    culturalDetailSpin 0.8s linear infinite;
+}
+
+@keyframes culturalDetailSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cultural-detail-loading h2 {
+  margin: 0;
+
+  color: #234b6c;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 21px;
+}
+
+.cultural-detail-loading p {
+  margin-top: 6px;
+
+  color: #788895;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   EMPTY
+   ===================================================== */
+
+.cultural-detail-empty {
+  min-height: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.cultural-detail-empty > span {
+  color: #6390b1;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.cultural-detail-empty h1 {
+  margin: 8px 0;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+.cultural-detail-empty p {
+  max-width: 400px;
+
+  color: #71808f;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cultural-detail-empty button,
+.cultural-detail-footer button {
+  margin-top: 10px;
+
+  padding: 9px 15px;
+
+  border: 1px solid #cbdde9;
+  border-radius: 8px;
+
+  background: #f4f9fc;
+
+  color: #28658d;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   FOOTER ACTION
+   ===================================================== */
+
+.cultural-detail-footer {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+  .cultural-detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .cultural-detail-image {
+    min-height: 280px;
+  }
+
+  .cultural-detail-image img {
+    min-height: 280px;
+  }
+
+  .cultural-media-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

@@ -4,6 +4,8 @@ import PublicHome from "./PublicHome";
 
 import "./PublicLayout.css";
 
+
+
 export default function PublicLayout() {
   const [activePage, setActivePage] = useState("home");
   const [search, setSearch] = useState("");
