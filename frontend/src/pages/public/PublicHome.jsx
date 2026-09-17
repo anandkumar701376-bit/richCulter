@@ -7,10 +7,18 @@ import "./PublicHome.css";
 import IndiaMap from "./IndiaMap";
 
 
+/* =================================================
+   HOME HERO IMAGE
+   ================================================= */
+
+const HERO_IMAGE = "/india-culture-hero.png";
+
+
 export default function PublicHome({
   search,
   onSearchChange,
   onNavigate,
+  initialSelectedState,
 }) {
   const [states, setStates] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -19,10 +27,19 @@ export default function PublicHome({
 
   const [loading, setLoading] = useState(true);
 
-  // No state is selected when the page first opens.
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedStateItems, setSelectedStateItems] = useState([]);
-  const [selectedStateLoading, setSelectedStateLoading] = useState(false);
+
+  // =================================================
+  // SELECTED STATE
+  // =================================================
+
+  const [selectedState, setSelectedState] =
+    useState(initialSelectedState || null);
+
+  const [selectedStateItems, setSelectedStateItems] =
+    useState([]);
+
+  const [selectedStateLoading, setSelectedStateLoading] =
+    useState(false);
 
 
   // =================================================
@@ -87,15 +104,58 @@ export default function PublicHome({
 
 
   // =================================================
-  // HERO MEDIA
+  // RESTORE PREVIOUSLY SELECTED STATE
   // =================================================
 
-  const heroMedia =
-    media.find(
-      (item) =>
-        item.media_type === "image" &&
-        item.media_url
-    ) || media[0];
+  useEffect(() => {
+
+    if (!initialSelectedState?.databaseId) {
+      return;
+    }
+
+    async function restoreSelectedState() {
+
+      try {
+
+        setSelectedState(initialSelectedState);
+
+        setSelectedStateLoading(true);
+
+        const response =
+          await api.getCulturalItems({
+            state_id:
+              initialSelectedState.databaseId,
+            page: 1,
+            limit: 20,
+          });
+
+        setSelectedStateItems(
+          Array.isArray(response?.items)
+            ? response.items
+            : Array.isArray(response)
+            ? response
+            : []
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Failed to restore selected state:",
+          error
+        );
+
+        setSelectedStateItems([]);
+
+      } finally {
+
+        setSelectedStateLoading(false);
+
+      }
+    }
+
+    restoreSelectedState();
+
+  }, [initialSelectedState]);
 
 
   // =================================================
@@ -104,9 +164,9 @@ export default function PublicHome({
 
   const filteredItems = culturalItems
     .filter((item) => {
-      const query = search
-        .toLowerCase()
-        .trim();
+
+      const query =
+        search?.toLowerCase().trim() || "";
 
       if (!query) {
         return true;
@@ -120,17 +180,9 @@ export default function PublicHome({
           ?.toLowerCase()
           .includes(query)
       );
+
     })
     .slice(0, 6);
-
-
-  // =================================================
-  // SELECTED STATE CULTURAL ITEMS
-  // =================================================
-  //
-  // These are fetched from PostgreSQL through the
-  // state_id API filter whenever a state is selected.
-  //
 
 
   // =================================================
@@ -138,6 +190,7 @@ export default function PublicHome({
   // =================================================
 
   function getItemMedia(itemId) {
+
     return (
       media.find(
         (item) =>
@@ -146,6 +199,7 @@ export default function PublicHome({
           item.media_url
       )?.media_url || null
     );
+
   }
 
 
@@ -154,28 +208,32 @@ export default function PublicHome({
   // =================================================
 
   async function handleStateSelect(state) {
+
     if (!state) {
       return;
     }
 
     setSelectedState(state);
+
     setSelectedStateItems([]);
 
-    // IndiaMap passes the PostgreSQL UUID as databaseId.
-    // Only call the API when that real DB id exists.
     if (!state.databaseId) {
+
       setSelectedStateLoading(false);
+
       return;
     }
 
     try {
+
       setSelectedStateLoading(true);
 
-      const response = await api.getCulturalItems({
-        state_id: state.databaseId,
-        page: 1,
-        limit: 20,
-      });
+      const response =
+        await api.getCulturalItems({
+          state_id: state.databaseId,
+          page: 1,
+          limit: 20,
+        });
 
       setSelectedStateItems(
         Array.isArray(response?.items)
@@ -184,15 +242,22 @@ export default function PublicHome({
           ? response
           : []
       );
+
     } catch (error) {
+
       console.error(
         "Failed to load cultural items for selected state:",
         error
       );
+
       setSelectedStateItems([]);
+
     } finally {
+
       setSelectedStateLoading(false);
+
     }
+
   }
 
 
@@ -201,13 +266,44 @@ export default function PublicHome({
   // =================================================
 
   function handleBackToMap() {
+
     setSelectedState(null);
+
     setSelectedStateItems([]);
+
     setSelectedStateLoading(false);
+
   }
 
 
+  // =================================================
+  // OPEN CULTURAL ITEM
+  // =================================================
+
+  function openCulturalItem(item) {
+
+    if (!item) {
+      return;
+    }
+
+    onNavigate?.(
+      "cultural-item",
+      {
+        item: item,
+
+        returnState: selectedState,
+      }
+    );
+
+  }
+
+
+  // =================================================
+  // RETURN UI
+  // =================================================
+
   return (
+
     <div className="home-page">
 
 
@@ -217,21 +313,17 @@ export default function PublicHome({
 
       <section
         className="culture-hero"
-        style={
-          heroMedia?.media_url
-            ? {
-                backgroundImage: `
-                  linear-gradient(
-                    90deg,
-                    rgba(5, 35, 63, 0.88),
-                    rgba(5, 55, 88, 0.55),
-                    rgba(5, 55, 88, 0.18)
-                  ),
-                  url("${heroMedia.media_url}")
-                `,
-              }
-            : undefined
-        }
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              90deg,
+              rgba(5, 35, 63, 0.88),
+              rgba(5, 55, 88, 0.55),
+              rgba(5, 55, 88, 0.18)
+            ),
+            url("${HERO_IMAGE}")
+          `,
+        }}
       >
 
         <div className="hero-content">
@@ -257,11 +349,15 @@ export default function PublicHome({
           <button
             className="hero-button"
             onClick={() =>
-              onNavigate("explore")
+              onNavigate?.("explore")
             }
           >
             Explore India
-            <span>→</span>
+
+            <span>
+              →
+            </span>
+
           </button>
 
         </div>
@@ -294,10 +390,11 @@ export default function PublicHome({
 
           </div>
 
+
           <button
             className="view-all-button"
             onClick={() =>
-              onNavigate("states")
+              onNavigate?.("states")
             }
           >
             View All States →
@@ -308,12 +405,6 @@ export default function PublicHome({
 
         {/* =================================================
             INDIA CULTURE EXPLORER
-
-            BEFORE SELECTION:
-            map centered
-
-            AFTER SELECTION:
-            content left + map right
             ================================================= */}
 
         <div
@@ -426,10 +517,13 @@ export default function PublicHome({
                   {selectedStateLoading ? (
 
                     <div className="state-items-loading">
+
                       <div className="state-loading-spinner" />
+
                       <p>
                         Loading cultural heritage from PostgreSQL...
                       </p>
+
                     </div>
 
                   ) : selectedStateItems.length > 0 ? (
@@ -444,30 +538,31 @@ export default function PublicHome({
                             getItemMedia(item.id);
 
                           return (
+
                             <article
                               className="state-cultural-card"
                               key={item.id}
                               tabIndex={0}
                               role="button"
                               aria-label={`Explore ${item.title}`}
+
                               onClick={() =>
-                                onNavigate?.(
-                                  "cultural-item",
-                                  item
-                                )
+                                openCulturalItem(item)
                               }
+
                               onKeyDown={(event) => {
+
                                 if (
                                   event.key === "Enter" ||
                                   event.key === " "
                                 ) {
+
                                   event.preventDefault();
 
-                                  onNavigate?.(
-                                    "cultural-item",
-                                    item
-                                  );
+                                  openCulturalItem(item);
+
                                 }
+
                               }}
                             >
 
@@ -509,7 +604,9 @@ export default function PublicHome({
                               </div>
 
                             </article>
+
                           );
+
                         })}
 
                     </div>
@@ -639,30 +736,31 @@ export default function PublicHome({
                 getItemMedia(item.id);
 
               return (
+
                 <article
                   className="heritage-card"
                   key={item.id}
                   tabIndex={0}
                   role="button"
                   aria-label={`Explore ${item.title}`}
+
                   onClick={() =>
-                    onNavigate?.(
-                      "cultural-item",
-                      item
-                    )
+                    openCulturalItem(item)
                   }
+
                   onKeyDown={(event) => {
+
                     if (
                       event.key === "Enter" ||
                       event.key === " "
                     ) {
+
                       event.preventDefault();
 
-                      onNavigate?.(
-                        "cultural-item",
-                        item
-                      );
+                      openCulturalItem(item);
+
                     }
+
                   }}
                 >
 
@@ -704,6 +802,7 @@ export default function PublicHome({
                   </div>
 
                 </article>
+
               );
 
             })}
@@ -819,6 +918,6 @@ export default function PublicHome({
       </section>
 
     </div>
+
   );
 }
-

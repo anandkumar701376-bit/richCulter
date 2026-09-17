@@ -1,0 +1,720 @@
+.explore-india-page {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.explore-page-hero {
+  min-height: 230px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 35px 42px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      120deg,
+      #082f52,
+      #176b9a,
+      #4d91ae
+    );
+
+  color: white;
+
+  box-shadow:
+    0 8px 24px rgba(18, 54, 88, 0.12);
+}
+
+.explore-page-label {
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+
+  color: #d7edf9;
+}
+
+.explore-page-hero h1 {
+  margin: 9px 0 12px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(32px, 4vw, 47px);
+
+  line-height: 1.03;
+}
+
+.explore-page-hero p {
+  max-width: 600px;
+
+  margin: 0;
+
+  color: #e3f0f7;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   HERO STATS
+   ===================================================== */
+
+.explore-hero-stats {
+  display: flex;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+.explore-hero-stats > div {
+  min-width: 105px;
+
+  padding: 17px;
+
+  border:
+    1px solid rgba(255,255,255,0.22);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.10);
+
+  backdrop-filter: blur(5px);
+
+  text-align: center;
+}
+
+.explore-hero-stats strong {
+  display: block;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 27px;
+}
+
+.explore-hero-stats span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #d9edf7;
+
+  font-size: 9px;
+}
+
+
+/* =====================================================
+   FILTER SECTION
+   ===================================================== */
+
+.explore-filter-section {
+  margin-top: 18px;
+
+  padding: 18px;
+
+  border:
+    1px solid #dce6ee;
+
+  border-radius: 13px;
+
+  background: white;
+
+  box-shadow:
+    0 5px 18px rgba(22, 57, 89, 0.05);
+}
+
+.explore-filter-top {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 14px;
+}
+
+.explore-filter-top > div:first-child > span {
+  color: #5d8bb0;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.explore-filter-top h2 {
+  margin: 4px 0 0;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 23px;
+}
+
+.explore-result-count {
+  color: #718392;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   CATEGORY FILTERS
+   ===================================================== */
+
+.explore-category-filters {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.explore-category-filters button {
+  padding: 8px 13px;
+
+  border:
+    1px solid #d7e3eb;
+
+  border-radius: 999px;
+
+  background: #f8fbfd;
+
+  color: #56758c;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.explore-category-filters button:hover {
+  transform: translateY(-1px);
+
+  border-color: #a9c8db;
+
+  background: #edf6fb;
+
+  color: #28658d;
+}
+
+.explore-category-filters button.active {
+  border-color: #347aaa;
+
+  background: #347aaa;
+
+  color: white;
+}
+
+
+/* =====================================================
+   SEARCH MESSAGE
+   ===================================================== */
+
+.explore-search-result {
+  margin-top: 14px;
+
+  padding: 10px 13px;
+
+  border:
+    1px solid #dce8ef;
+
+  border-radius: 9px;
+
+  background: #f7fbfd;
+
+  color: #718392;
+
+  font-size: 11px;
+}
+
+.explore-search-result strong {
+  color: #245a7e;
+}
+
+
+/* =====================================================
+   CULTURAL GRID
+   ===================================================== */
+
+.explore-cultural-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 13px;
+
+  margin-top: 15px;
+}
+
+
+/* =====================================================
+   CULTURAL CARD
+   ===================================================== */
+
+.explore-cultural-card {
+  overflow: hidden;
+
+  border:
+    1px solid #dce5ed;
+
+  border-radius: 13px;
+
+  background: white;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.explore-cultural-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #c7dce8;
+
+  box-shadow:
+    0 10px 25px rgba(22, 57, 89, 0.10);
+}
+
+.explore-cultural-card:focus-visible {
+  outline:
+    2px solid #347aaa;
+
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   IMAGE
+   ===================================================== */
+
+.explore-card-image {
+  position: relative;
+
+  height: 175px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dceaf5,
+      #eef5f8
+    );
+}
+
+.explore-card-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition:
+    transform 0.35s ease;
+}
+
+.explore-cultural-card:hover
+.explore-card-image img {
+  transform: scale(1.04);
+}
+
+.explore-card-image-empty {
+  color: #5686a7;
+
+  font-size: 34px;
+}
+
+
+/* =====================================================
+   CATEGORY BADGE
+   ===================================================== */
+
+.explore-card-category {
+  position: absolute;
+
+  left: 10px;
+  bottom: 10px;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(5, 35, 63, 0.82);
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+
+.explore-card-content {
+  padding: 13px;
+}
+
+.explore-card-location {
+  color: #6a91aa;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+.explore-card-content h3 {
+  margin: 5px 0 6px;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 19px;
+
+  line-height: 1.15;
+}
+
+.explore-card-content p {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  min-height: 34px;
+
+  color: #71808f;
+
+  font-size: 10px;
+
+  line-height: 1.55;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+}
+
+
+/* =====================================================
+   CARD LINK
+   ===================================================== */
+
+.explore-card-link {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 12px;
+
+  padding-top: 10px;
+
+  border-top:
+    1px solid #edf1f4;
+
+  color: #347aaa;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+.explore-card-link span {
+  font-size: 15px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.explore-cultural-card:hover
+.explore-card-link span {
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   NO RESULTS
+   ===================================================== */
+
+.explore-no-results {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 15px;
+
+  padding: 30px;
+
+  border:
+    1px dashed #cad9e5;
+
+  border-radius: 13px;
+
+  background: white;
+
+  text-align: center;
+}
+
+.explore-no-results > div {
+  color: #77a2be;
+
+  font-size: 28px;
+}
+
+.explore-no-results h2 {
+  margin: 10px 0 5px;
+
+  color: #234b6c;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 21px;
+}
+
+.explore-no-results p {
+  margin: 0;
+
+  color: #7b8b98;
+
+  font-size: 11px;
+}
+
+.explore-no-results button {
+  margin-top: 15px;
+
+  padding: 9px 15px;
+
+  border: 1px solid #cbdde9;
+
+  border-radius: 8px;
+
+  background: #f4f9fc;
+
+  color: #28658d;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.explore-loading {
+  min-height: 550px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.explore-loading-spinner {
+  width: 32px;
+  height: 32px;
+
+  margin-bottom: 14px;
+
+  border:
+    3px solid #dceaf2;
+
+  border-top-color: #347aaa;
+
+  border-radius: 50%;
+
+  animation:
+    exploreSpin 0.8s linear infinite;
+}
+
+@keyframes exploreSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.explore-loading h2 {
+  margin: 0;
+
+  color: #234b6c;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+.explore-loading p {
+  margin-top: 6px;
+
+  color: #788895;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.explore-error {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  border:
+    1px solid #efd3d3;
+
+  border-radius: 13px;
+
+  background: #fffafa;
+
+  text-align: center;
+}
+
+.explore-error span {
+  color: #6390b1;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.explore-error h1 {
+  margin: 8px 0;
+
+  color: #7d4040;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+.explore-error p {
+  color: #916969;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+  .explore-cultural-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .explore-page-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .explore-page-hero {
+    padding: 28px;
+  }
+
+  .explore-hero-stats {
+    width: 100%;
+  }
+
+  .explore-hero-stats > div {
+    flex: 1;
+  }
+
+  .explore-cultural-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .explore-filter-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}

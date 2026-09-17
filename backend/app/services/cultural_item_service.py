@@ -1,5 +1,6 @@
 import uuid
 
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.models.cultural_item import CulturalItem
@@ -86,9 +87,14 @@ def create_cultural_item(
         description=item_data.description,
     )
 
-    db.add(item)
-    db.commit()
-    db.refresh(item)
+    try:
+        db.add(item)
+        db.commit()
+        db.refresh(item)
+
+    except SQLAlchemyError:
+        db.rollback()
+        raise
 
     return item, None
 
@@ -165,8 +171,13 @@ def update_cultural_item(
     if item_data.description is not None:
         item.description = item_data.description
 
-    db.commit()
-    db.refresh(item)
+    try:
+        db.commit()
+        db.refresh(item)
+
+    except SQLAlchemyError:
+        db.rollback()
+        raise
 
     return item, None
 
@@ -183,7 +194,12 @@ def delete_cultural_item(
     if item is None:
         return False
 
-    db.delete(item)
-    db.commit()
+    try:
+        db.delete(item)
+        db.commit()
+
+    except SQLAlchemyError:
+        db.rollback()
+        raise
 
     return True

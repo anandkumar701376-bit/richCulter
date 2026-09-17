@@ -1,0 +1,1082 @@
+.states-page {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.states-page-hero {
+  min-height: 225px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 35px 42px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      120deg,
+      #082f52,
+      #176b9a,
+      #4d91ae
+    );
+
+  color: white;
+
+  box-shadow:
+    0 8px 24px rgba(18, 54, 88, 0.12);
+}
+
+.states-page-hero > div:first-child > span {
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  color: #d7edf9;
+}
+
+.states-page-hero h1 {
+  margin: 9px 0 12px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(32px, 4vw, 46px);
+
+  line-height: 1.03;
+}
+
+.states-page-hero p {
+  max-width: 570px;
+
+  margin: 0;
+
+  color: #e3f0f7;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   TOTAL
+   ===================================================== */
+
+.states-total {
+  min-width: 130px;
+
+  padding: 22px;
+
+  border:
+    1px solid rgba(255,255,255,0.22);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255,255,255,0.10);
+
+  text-align: center;
+
+  backdrop-filter: blur(5px);
+}
+
+.states-total strong {
+  display: block;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 38px;
+}
+
+.states-total span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #d9edf7;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   DIRECTORY
+   ===================================================== */
+
+.states-directory {
+  margin-top: 18px;
+
+  padding: 19px;
+
+  border:
+    1px solid #dce6ee;
+
+  border-radius: 13px;
+
+  background: white;
+
+  box-shadow:
+    0 5px 18px rgba(22, 57, 89, 0.05);
+}
+
+.states-directory-heading {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 15px;
+}
+
+.states-directory-heading > div:first-child > span {
+  color: #5d8bb0;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.states-directory-heading h2 {
+  margin: 4px 0 3px;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 23px;
+}
+
+.states-directory-heading p {
+  margin: 0;
+
+  color: #718392;
+
+  font-size: 11px;
+}
+
+.states-result-count {
+  color: #718392;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   STATES GRID
+   ===================================================== */
+
+.states-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+/* =====================================================
+   STATE CARD
+   ===================================================== */
+
+.state-directory-card {
+  min-height: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 15px;
+
+  border:
+    1px solid #dce5ed;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fbfdfe
+    );
+
+  cursor: pointer;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.state-directory-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #c4dce9;
+
+  box-shadow:
+    0 9px 23px rgba(22, 57, 89, 0.10);
+}
+
+.state-directory-card:focus-visible {
+  outline:
+    2px solid #347aaa;
+
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   CARD TOP
+   ===================================================== */
+
+.state-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.state-code {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #236b9f,
+      #4993b2
+    );
+
+  border:
+    2px solid #d9ebf4;
+
+  color: white;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 13px rgba(31, 91, 133, 0.13);
+}
+
+.state-card-top > span {
+  color: #7a8b98;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+
+.state-directory-card h3 {
+  margin: 12px 0 6px;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 20px;
+
+  line-height: 1.1;
+}
+
+.state-directory-card p {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #71808f;
+
+  font-size: 10px;
+
+  line-height: 1.55;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+}
+
+
+/* =====================================================
+   CARD BOTTOM
+   ===================================================== */
+
+.state-card-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: auto;
+
+  padding-top: 12px;
+
+  color: #347aaa;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+.state-card-bottom strong {
+  font-size: 16px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.state-directory-card:hover
+.state-card-bottom strong {
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   SELECTED STATE
+   ===================================================== */
+
+.states-back-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  padding: 9px 15px;
+
+  border:
+    1px solid rgba(52, 122, 170, 0.18);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.9);
+
+  color: #347aaa;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px rgba(5,35,63,0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.states-back-button:hover {
+  transform: translateX(-3px);
+
+  border-color:
+    rgba(52,122,170,0.35);
+
+  box-shadow:
+    0 7px 18px rgba(5,35,63,0.11);
+}
+
+
+/* =====================================================
+   STATE PROFILE HERO
+   ===================================================== */
+
+.state-profile-hero {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 23px;
+
+  border:
+    1px solid #d8e3ee;
+
+  border-radius: 14px;
+
+  background: white;
+
+  box-shadow:
+    0 7px 22px rgba(22,57,89,0.07);
+}
+
+.state-profile-symbol {
+  width: 78px;
+  height: 78px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #236b9f,
+      #4993b2
+    );
+
+  border:
+    3px solid #d9ebf4;
+
+  color: white;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 7px 18px rgba(31,91,133,0.15);
+}
+
+.state-profile-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.state-profile-content > span {
+  color: #6390b1;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.state-profile-content h1 {
+  margin: 6px 0 7px;
+
+  color: #173e61;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 34px;
+
+  line-height: 1.05;
+}
+
+.state-profile-content p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: #71808f;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   STATE STAT
+   ===================================================== */
+
+.state-profile-stat {
+  min-width: 105px;
+
+  padding: 14px;
+
+  border:
+    1px solid #dce7ef;
+
+  border-radius: 10px;
+
+  background: #f7fbfd;
+
+  text-align: center;
+}
+
+.state-profile-stat strong {
+  display: block;
+
+  color: #245a7e;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+}
+
+.state-profile-stat span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #7a8b98;
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   STATE PROFILE SECTION
+   ===================================================== */
+
+.state-profile-section {
+  margin-top: 16px;
+
+  padding: 19px;
+
+  border:
+    1px solid #dce6ee;
+
+  border-radius: 13px;
+
+  background: white;
+}
+
+.states-section-heading {
+  margin-bottom: 13px;
+}
+
+.states-section-heading > div > span {
+  color: #6390b1;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.states-section-heading h2 {
+  margin: 5px 0 0;
+
+  color: #1b4466;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   STATE ITEMS
+   ===================================================== */
+
+.state-items-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.state-item-simple-card {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+
+  padding: 12px;
+
+  border:
+    1px solid #dce6ee;
+
+  border-radius: 10px;
+
+  background: #fbfdfe;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.state-item-simple-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(22,57,89,0.08);
+}
+
+.state-item-simple-card:focus-visible {
+  outline:
+    2px solid #347aaa;
+
+  outline-offset: 2px;
+}
+
+.state-item-card-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8f2f8;
+
+  color: #347aaa;
+
+  font-size: 15px;
+}
+
+.state-item-simple-card > div:nth-child(2) {
+  min-width: 0;
+}
+
+.state-item-simple-card > div > span {
+  color: #6b91aa;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+.state-item-simple-card h3 {
+  margin: 3px 0;
+
+  overflow: hidden;
+
+  color: #214a6d;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.state-item-simple-card p {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #788895;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+}
+
+.state-item-simple-card > strong {
+  color: #347aaa;
+
+  font-size: 17px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.state-item-simple-card:hover > strong {
+  transform: translateX(3px);
+}
+
+
+/* =====================================================
+   NO ITEMS
+   ===================================================== */
+
+.state-no-items {
+  min-height: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  border:
+    1px dashed #cad9e5;
+
+  border-radius: 10px;
+
+  background: #fbfdfe;
+
+  text-align: center;
+}
+
+.state-no-items > div {
+  color: #77a2be;
+
+  font-size: 25px;
+}
+
+.state-no-items h3 {
+  margin: 8px 0 5px;
+
+  color: #294f6e;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 18px;
+}
+
+.state-no-items p {
+  max-width: 380px;
+
+  margin: 0;
+
+  color: #7d8d99;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.states-loading {
+  min-height: 550px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.states-loading-spinner {
+  width: 31px;
+  height: 31px;
+
+  margin-bottom: 13px;
+
+  border:
+    3px solid #dceaf2;
+
+  border-top-color: #347aaa;
+
+  border-radius: 50%;
+
+  animation:
+    statesSpin 0.8s linear infinite;
+}
+
+@keyframes statesSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.states-loading h2 {
+  margin: 0;
+
+  color: #234b6c;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+.states-loading p {
+  margin-top: 6px;
+
+  color: #788895;
+
+  font-size: 11px;
+}
+
+.state-items-loading-page {
+  min-height: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.state-items-loading-page p {
+  color: #788895;
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.states-error {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  border:
+    1px solid #efd3d3;
+
+  border-radius: 13px;
+
+  background: #fffafa;
+
+  text-align: center;
+}
+
+.states-error > span {
+  color: #6390b1;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.states-error h1 {
+  margin: 8px 0;
+
+  color: #7d4040;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+.states-error p {
+  color: #916969;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   NO SEARCH RESULTS
+   ===================================================== */
+
+.states-no-results {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.states-no-results > div {
+  color: #77a2be;
+
+  font-size: 28px;
+}
+
+.states-no-results h2 {
+  margin: 9px 0 5px;
+
+  color: #234b6c;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 21px;
+}
+
+.states-no-results p {
+  margin: 0;
+
+  color: #7b8b98;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1050px) {
+
+  .states-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .states-page-hero {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .states-total {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .state-profile-hero {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .state-profile-content {
+    flex-basis: calc(100% - 100px);
+  }
+
+  .state-profile-stat {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .state-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .states-page-hero {
+    padding: 28px;
+  }
+
+  .states-directory {
+    padding: 14px;
+  }
+
+  .states-directory-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .states-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .state-profile-content {
+    flex-basis: 100%;
+  }
+
+}

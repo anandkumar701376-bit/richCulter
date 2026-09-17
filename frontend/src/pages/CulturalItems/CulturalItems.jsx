@@ -14,6 +14,7 @@ export default function CulturalItems() {
   const [viewingItem, setViewingItem] = useState(null);
 
   const [form, setForm] = useState({
+    
     state_id: "",
     category_id: "",
     title: "",

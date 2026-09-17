@@ -8,6 +8,7 @@ import "./CulturalItemDetail.css";
 export default function CulturalItemDetail({
   item,
   onNavigate,
+  returnState,
 }) {
   const [details, setDetails] = useState(null);
   const [media, setMedia] = useState([]);
@@ -15,6 +16,12 @@ export default function CulturalItemDetail({
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // Currently selected image
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Fullscreen image viewer
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
 
   // =====================================================
@@ -43,13 +50,29 @@ export default function CulturalItemDetail({
           api.getSourcesForItem(item.id),
         ]);
 
+        const loadedMedia =
+          Array.isArray(mediaData)
+            ? mediaData
+            : [];
+
         setDetails(detailsData || item);
-        setMedia(Array.isArray(mediaData) ? mediaData : []);
+        setMedia(loadedMedia);
+
         setSources(
           Array.isArray(sourcesData)
             ? sourcesData
             : []
         );
+
+        // Select first available image
+        const firstImage =
+          loadedMedia.find(
+            (mediaItem) =>
+              mediaItem.media_type === "image" &&
+              mediaItem.media_url
+          );
+
+        setSelectedImage(firstImage || null);
 
       } catch (err) {
         console.error(
@@ -79,8 +102,59 @@ export default function CulturalItemDetail({
   // =====================================================
 
   function handleBack() {
-    onNavigate?.("home");
+    onNavigate?.("home", returnState);
   }
+
+
+  // =====================================================
+  // OPEN IMAGE
+  // =====================================================
+
+  function openImage(mediaItem) {
+    if (
+      mediaItem?.media_type === "image" &&
+      mediaItem?.media_url
+    ) {
+      setSelectedImage(mediaItem);
+      setLightboxOpen(true);
+    }
+  }
+
+
+  // =====================================================
+  // CLOSE IMAGE VIEWER
+  // =====================================================
+
+  function closeLightbox() {
+    setLightboxOpen(false);
+  }
+
+
+  // =====================================================
+  // KEYBOARD HANDLING
+  // =====================================================
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setLightboxOpen(false);
+      }
+    }
+
+    if (lightboxOpen) {
+      document.addEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    }
+
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [lightboxOpen]);
 
 
   // =====================================================
@@ -151,14 +225,33 @@ export default function CulturalItemDetail({
 
 
   // =====================================================
-  // FIND MAIN IMAGE
+  // IMAGE MEDIA
   // =====================================================
 
   const imageMedia =
-    media.find(
+    media.filter(
       (mediaItem) =>
         mediaItem.media_type === "image" &&
         mediaItem.media_url
+    );
+
+
+  // =====================================================
+  // MAIN IMAGE
+  // =====================================================
+
+  const mainImage =
+    selectedImage || imageMedia[0] || null;
+
+
+  // =====================================================
+  // OTHER MEDIA
+  // =====================================================
+
+  const otherMedia =
+    media.filter(
+      (mediaItem) =>
+        mediaItem.media_type !== "image"
     );
 
 
@@ -178,7 +271,13 @@ export default function CulturalItemDetail({
         className="cultural-detail-back"
         onClick={handleBack}
       >
-        ← Back to India
+        <span className="back-arrow">
+          ←
+        </span>
+
+        <span>
+          Back to {returnState?.name || "India"}
+        </span>
       </button>
 
 
@@ -200,29 +299,111 @@ export default function CulturalItemDetail({
       <section className="cultural-detail-hero">
 
 
-        {/* IMAGE */}
+        {/* =================================================
+            MEDIA AREA
+            ================================================= */}
 
-        <div className="cultural-detail-image">
+        <div className="cultural-detail-media-area">
 
-          {imageMedia ? (
 
-            <img
-              src={imageMedia.media_url}
-              alt={culturalItem.title}
-            />
+          {/* MAIN IMAGE */}
 
-          ) : (
+          <div
+            className={
+              mainImage
+                ? "cultural-detail-image cultural-detail-image-clickable"
+                : "cultural-detail-image"
+            }
+            onClick={() =>
+              mainImage && openImage(mainImage)
+            }
+          >
 
-            <div className="cultural-detail-image-empty">
-              ◆
+            {mainImage ? (
+
+              <img
+                src={mainImage.media_url}
+                alt={
+                  mainImage.title ||
+                  culturalItem.title
+                }
+              />
+
+            ) : (
+
+              <div className="cultural-detail-image-empty">
+                ◆
+              </div>
+
+            )}
+
+            {mainImage && (
+              <div className="image-view-hint">
+                Click to view larger
+              </div>
+            )}
+
+          </div>
+
+
+          {/* THUMBNAILS */}
+
+          {imageMedia.length > 1 && (
+
+            <div className="cultural-detail-thumbnails">
+
+              {imageMedia.map((mediaItem) => {
+
+                const isActive =
+                  selectedImage?.id ===
+                  mediaItem.id;
+
+                return (
+                  <button
+                    key={mediaItem.id}
+                    type="button"
+                    className={
+                      isActive
+                        ? "cultural-detail-thumbnail active"
+                        : "cultural-detail-thumbnail"
+                    }
+                    onClick={() =>
+                      setSelectedImage(mediaItem)
+                    }
+                  >
+
+                    <img
+                      src={mediaItem.media_url}
+                      alt={
+                        mediaItem.title ||
+                        culturalItem.title
+                      }
+                    />
+
+                  </button>
+                );
+
+              })}
+
             </div>
 
+          )}
+
+
+          {/* CURRENT IMAGE TITLE */}
+
+          {mainImage?.title && (
+            <div className="cultural-detail-image-caption">
+              {mainImage.title}
+            </div>
           )}
 
         </div>
 
 
-        {/* CONTENT */}
+        {/* =================================================
+            CONTENT
+            ================================================= */}
 
         <div className="cultural-detail-main">
 
@@ -234,11 +415,13 @@ export default function CulturalItemDetail({
             {culturalItem.title}
           </h1>
 
+
           {culturalItem.state_name && (
             <div className="cultural-detail-location">
               📍 {culturalItem.state_name}
             </div>
           )}
+
 
           <p className="cultural-detail-description">
             {culturalItem.description ||
@@ -305,17 +488,23 @@ export default function CulturalItemDetail({
             Cultural Media
           </h2>
 
-          <div className="cultural-media-grid">
 
-            {media.map((mediaItem) => (
+          {/* IMAGE GALLERY */}
 
-              <div
-                className="cultural-media-card"
-                key={mediaItem.id}
-              >
+          {imageMedia.length > 0 && (
 
-                {mediaItem.media_type === "image" &&
-                  mediaItem.media_url ? (
+            <div className="cultural-media-grid">
+
+              {imageMedia.map((mediaItem) => (
+
+                <button
+                  type="button"
+                  className="cultural-media-card"
+                  key={mediaItem.id}
+                  onClick={() =>
+                    openImage(mediaItem)
+                  }
+                >
 
                   <img
                     src={mediaItem.media_url}
@@ -325,31 +514,53 @@ export default function CulturalItemDetail({
                     }
                   />
 
-                ) : (
+                  {mediaItem.title && (
+                    <p>
+                      {mediaItem.title}
+                    </p>
+                  )}
 
-                  <div className="media-placeholder">
+                </button>
 
-                    <span>
-                      {mediaItem.media_type
-                        ?.toUpperCase() ||
-                        "MEDIA"}
-                    </span>
+              ))}
 
-                  </div>
+            </div>
 
-                )}
+          )}
 
-                {mediaItem.title && (
-                  <p>
-                    {mediaItem.title}
-                  </p>
-                )}
 
-              </div>
+          {/* OTHER MEDIA */}
 
-            ))}
+          {otherMedia.length > 0 && (
 
-          </div>
+            <div className="cultural-other-media">
+
+              {otherMedia.map((mediaItem) => (
+
+                <div
+                  className="media-placeholder"
+                  key={mediaItem.id}
+                >
+
+                  <span>
+                    {mediaItem.media_type
+                      ?.toUpperCase() ||
+                      "MEDIA"}
+                  </span>
+
+                  {mediaItem.title && (
+                    <p>
+                      {mediaItem.title}
+                    </p>
+                  )}
+
+                </div>
+
+              ))}
+
+            </div>
+
+          )}
 
         </section>
 
@@ -443,6 +654,54 @@ export default function CulturalItemDetail({
 
       </div>
 
+
+      {/* =================================================
+          FULLSCREEN IMAGE VIEWER
+          ================================================= */}
+
+      {lightboxOpen && mainImage && (
+
+        <div
+          className="cultural-image-lightbox"
+          onClick={closeLightbox}
+        >
+
+          <button
+            type="button"
+            className="cultural-image-lightbox-close"
+            onClick={closeLightbox}
+            aria-label="Close image viewer"
+          >
+            ×
+          </button>
+
+
+          <div
+            className="cultural-image-lightbox-content"
+            onClick={(event) =>
+              event.stopPropagation()
+            }
+          >
+
+            <img
+              src={mainImage.media_url}
+              alt={
+                mainImage.title ||
+                culturalItem.title
+              }
+            />
+
+            {mainImage.title && (
+              <p>
+                {mainImage.title}
+              </p>
+            )}
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
   );

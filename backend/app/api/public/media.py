@@ -1,7 +1,15 @@
 import uuid
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    HTTPException,
+    UploadFile,
+    status,
+)
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
@@ -31,6 +39,10 @@ from app.services.media_storage_service import (
 router = APIRouter(tags=["Media"])
 
 
+# ============================================================
+# CREATE MEDIA RECORD
+# ============================================================
+
 @router.post(
     "",
     response_model=MediaResponse,
@@ -40,10 +52,17 @@ def create_media_item(
     media_data: MediaCreate,
     db: Session = Depends(get_db),
 ):
-    media, error = create_media(
-        db,
-        media_data,
-    )
+    try:
+        media, error = create_media(
+            db,
+            media_data,
+        )
+
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while creating media",
+        )
 
     if error:
         raise HTTPException(
@@ -53,6 +72,10 @@ def create_media_item(
 
     return media_to_response(media)
 
+
+# ============================================================
+# GET MEDIA FOR CULTURAL ITEM
+# ============================================================
 
 @router.get(
     "/cultural-item/{cultural_item_id}",
@@ -72,6 +95,10 @@ def get_item_media(
         for media in media_items
     ]
 
+
+# ============================================================
+# GET MEDIA BY ID
+# ============================================================
 
 @router.get(
     "/{media_id}",
@@ -95,6 +122,10 @@ def get_media_item(
     return media_to_response(media)
 
 
+# ============================================================
+# UPDATE MEDIA
+# ============================================================
+
 @router.put(
     "/{media_id}",
     response_model=MediaResponse,
@@ -104,11 +135,18 @@ def update_media_item(
     media_data: MediaUpdate,
     db: Session = Depends(get_db),
 ):
-    media, error = update_media(
-        db,
-        media_id,
-        media_data,
-    )
+    try:
+        media, error = update_media(
+            db,
+            media_id,
+            media_data,
+        )
+
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while updating media",
+        )
 
     if error:
         raise HTTPException(
@@ -119,6 +157,10 @@ def update_media_item(
     return media_to_response(media)
 
 
+# ============================================================
+# DELETE MEDIA
+# ============================================================
+
 @router.delete(
     "/{media_id}",
     status_code=status.HTTP_204_NO_CONTENT,
@@ -127,10 +169,17 @@ def delete_media_item(
     media_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
-    deleted = delete_media(
-        db,
-        media_id,
-    )
+    try:
+        deleted = delete_media(
+            db,
+            media_id,
+        )
+
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while deleting media",
+        )
 
     if not deleted:
         raise HTTPException(
@@ -140,6 +189,10 @@ def delete_media_item(
 
     return None
 
+
+# ============================================================
+# UPLOAD MEDIA FILE
+# ============================================================
 
 @router.post(
     "/upload",
@@ -153,42 +206,116 @@ async def upload_media_file(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
+    file_path = None
+
     try:
+
+        # ----------------------------------------------------
+        # SAVE + VALIDATE FILE
+        # ----------------------------------------------------
+
         file_path, storage_key = await save_media_file(
             file=file,
             media_type=media_type,
         )
 
-    except ValueError as error:
+        # ----------------------------------------------------
+        # CREATE DATABASE DATA
+        # ----------------------------------------------------
+
+        media_data = MediaCreate(
+            cultural_item_id=cultural_item_id,
+            media_type=media_type,
+            storage_type="local",
+            storage_key=storage_key,
+            url=None,
+            title=title,
+        )
+
+        # ----------------------------------------------------
+        # CREATE DATABASE RECORD
+        # ----------------------------------------------------
+
+        media, error = create_media(
+            db,
+            media_data,
+        )
+
+        # ----------------------------------------------------
+        # EXPECTED SERVICE ERROR
+        # ----------------------------------------------------
+
+        if error:
+
+            saved_file = Path(file_path)
+
+            if saved_file.exists():
+                saved_file.unlink()
+
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=error,
+            )
+
+    except HTTPException:
+        raise
+
+    # --------------------------------------------------------
+    # FILE VALIDATION ERROR
+    # --------------------------------------------------------
+
+    except ValueError as exc:
+
+        # If validation fails after a file was created,
+        # remove the file.
+        if file_path:
+            saved_file = Path(file_path)
+
+            if saved_file.exists():
+                saved_file.unlink()
+
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(error),
+            detail=str(exc),
         )
 
-    media_data = MediaCreate(
-        cultural_item_id=cultural_item_id,
-        media_type=media_type,
-        storage_type="local",
-        storage_key=storage_key,
-        url=None,
-        title=title,
-    )
+    # --------------------------------------------------------
+    # DATABASE ERROR
+    # --------------------------------------------------------
 
-    media, error = create_media(
-        db,
-        media_data,
-    )
+    except SQLAlchemyError:
 
-    if error:
-        saved_file = Path(file_path)
+        if file_path:
+            saved_file = Path(file_path)
 
-        if saved_file.exists():
-            saved_file.unlink()
+            if saved_file.exists():
+                saved_file.unlink()
 
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=error,
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error while saving media",
         )
+
+    # --------------------------------------------------------
+    # UNEXPECTED ERROR
+    # --------------------------------------------------------
+
+    except Exception:
+
+        if file_path:
+            saved_file = Path(file_path)
+
+            if saved_file.exists():
+                saved_file.unlink()
+
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to upload media",
+        )
+
+    # ========================================================
+    # MEDIA URL
+    # ========================================================
 
     media_url = get_media_url(
         storage_type=media.storage_type,
@@ -207,7 +334,11 @@ async def upload_media_file(
         "created_at": media.created_at,
         "media_url": media_url,
     }
-    
+
+
+# ============================================================
+# GET ALL MEDIA
+# ============================================================
 
 @router.get(
     "",
