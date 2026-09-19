@@ -63,6 +63,12 @@ def create_media(
         storage_key=media_data.storage_key,
         url=media_data.url,
         title=media_data.title,
+
+        # Attribution
+        author=media_data.author,
+        license=media_data.license,
+        license_url=media_data.license_url,
+        source_url=media_data.source_url,
     )
 
     try:
@@ -154,7 +160,15 @@ def media_to_response(media: Media):
         "storage_type": media.storage_type,
         "storage_key": media.storage_key,
         "title": media.title,
+
+        # Attribution
+        "author": media.author,
+        "license": media.license,
+        "license_url": media.license_url,
+        "source_url": media.source_url,
+
         "created_at": media.created_at,
+
         "media_url": get_media_url(
             storage_type=media.storage_type,
             storage_key=media.storage_key,

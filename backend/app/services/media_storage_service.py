@@ -1,5 +1,6 @@
 import uuid
 from pathlib import Path
+import httpx
 
 from fastapi import UploadFile
 
@@ -84,6 +85,48 @@ ALLOWED_CONTENT_TYPES = {
         "audio/x-m4a",
     },
 }
+
+
+
+async def validate_external_image_url(url: str) -> None:
+    url = url.strip()
+
+    if not url:
+        raise ValueError(
+            "External image URL cannot be empty"
+        )
+
+    try:
+        async with httpx.AsyncClient(
+            follow_redirects=True,
+            timeout=10.0,
+        ) as client:
+            response = await client.get(url)
+
+    except httpx.RequestError:
+        raise ValueError(
+            "Could not reach the external image URL"
+        )
+
+    if response.status_code != 200:
+        raise ValueError(
+            "External image URL is not available"
+        )
+
+    content_type = (
+        response.headers.get("content-type", "")
+        .lower()
+        .split(";")[0]
+        .strip()
+    )
+
+    if not content_type.startswith("image/"):
+        raise ValueError(
+            "The external URL does not point to an image"
+        )
+
+
+
 
 
 # ============================================================

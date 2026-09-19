@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+
 client = TestClient(app)
 
 INVALID_UUID = "00000000-0000-0000-0000-000000000001"
@@ -43,6 +44,24 @@ def get_existing_cultural_item():
     return items[0]
 
 
+def assert_paginated_response(data):
+    assert isinstance(data, dict)
+
+    assert "items" in data
+    assert "page" in data
+    assert "limit" in data
+    assert "total" in data
+    assert "pages" in data
+
+    assert isinstance(data["items"], list)
+    assert isinstance(data["page"], int)
+    assert isinstance(data["limit"], int)
+    assert isinstance(data["total"], int)
+    assert isinstance(data["pages"], int)
+
+    return data["items"]
+
+
 def test_search_cultural_items():
     response = client.get("/api/search")
 
@@ -50,7 +69,9 @@ def test_search_cultural_items():
 
     data = response.json()
 
-    assert isinstance(data, list)
+    results = assert_paginated_response(data)
+
+    assert isinstance(results, list)
 
 
 def test_search_no_results():
@@ -60,7 +81,14 @@ def test_search_no_results():
     )
 
     assert response.status_code == 200
-    assert response.json() == []
+
+    data = response.json()
+
+    results = assert_paginated_response(data)
+
+    assert results == []
+    assert data["total"] == 0
+    assert data["pages"] == 0
 
 
 def test_search_by_existing_title():
@@ -73,9 +101,9 @@ def test_search_by_existing_title():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     assert any(
         result["id"] == item["id"]
@@ -98,9 +126,9 @@ def test_search_by_description():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     assert any(
         result["id"] == item["id"]
@@ -118,9 +146,9 @@ def test_search_by_state():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     for result in results:
         assert result["state_id"] == state_id
@@ -136,9 +164,9 @@ def test_search_by_category():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     for result in results:
         assert result["category_id"] == category_id
@@ -158,9 +186,9 @@ def test_search_by_state_and_category():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     for result in results:
         assert result["state_id"] == state_id
@@ -180,9 +208,9 @@ def test_search_by_query_and_state():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     for result in results:
         assert result["state_id"] == item["state_id"]
@@ -201,9 +229,9 @@ def test_search_by_query_and_category():
 
     assert response.status_code == 200
 
-    results = response.json()
+    data = response.json()
 
-    assert isinstance(results, list)
+    results = assert_paginated_response(data)
 
     for result in results:
         assert result["category_id"] == item["category_id"]
@@ -216,7 +244,14 @@ def test_search_invalid_state():
     )
 
     assert response.status_code == 200
-    assert response.json() == []
+
+    data = response.json()
+
+    results = assert_paginated_response(data)
+
+    assert results == []
+    assert data["total"] == 0
+    assert data["pages"] == 0
 
 
 def test_search_invalid_category():
@@ -226,4 +261,11 @@ def test_search_invalid_category():
     )
 
     assert response.status_code == 200
-    assert response.json() == []
+
+    data = response.json()
+
+    results = assert_paginated_response(data)
+
+    assert results == []
+    assert data["total"] == 0
+    assert data["pages"] == 0

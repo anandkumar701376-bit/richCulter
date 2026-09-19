@@ -33,8 +33,9 @@ from app.services.media_service import (
 from app.services.media_storage_service import (
     save_media_file,
     get_media_url,
+    validate_external_image_url,
 )
-
+from app.models.cultural_item import CulturalItem
 
 router = APIRouter(tags=["Media"])
 
@@ -42,27 +43,55 @@ router = APIRouter(tags=["Media"])
 # ============================================================
 # CREATE MEDIA RECORD
 # ============================================================
-
 @router.post(
     "",
     response_model=MediaResponse,
     status_code=status.HTTP_201_CREATED,
 )
-def create_media_item(
+async def create_media_item(
     media_data: MediaCreate,
     db: Session = Depends(get_db),
 ):
-    try:
-        media, error = create_media(
-            db,
-            media_data,
+    # First verify the cultural item exists
+    cultural_item = (
+        db.query(CulturalItem)
+        .filter(
+            CulturalItem.id == media_data.cultural_item_id
+        )
+        .first()
+    )
+
+    if cultural_item is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Cultural item not found",
         )
 
-    except SQLAlchemyError:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Database error while creating media",
-        )
+    # Then validate external image URL
+    if (
+        media_data.storage_type == "external"
+        and media_data.media_type == "image"
+    ):
+        if not media_data.url:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="External image URL is required",
+            )
+
+        try:
+            await validate_external_image_url(
+                media_data.url
+            )
+        except ValueError as error:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=str(error),
+            )
+
+    media, error = create_media(
+        db,
+        media_data,
+    )
 
     if error:
         raise HTTPException(
@@ -71,8 +100,6 @@ def create_media_item(
         )
 
     return media_to_response(media)
-
-
 # ============================================================
 # GET MEDIA FOR CULTURAL ITEM
 # ============================================================

@@ -1,0 +1,1383 @@
+{
+  "summary": {
+    "total_cultural_items": 136,
+    "exact_duplicate_groups": 0,
+    "possible_near_duplicate_pairs": 5,
+    "test_or_placeholder_records": 0,
+    "records_with_missing_required_data": 0,
+    "title_formatting_issues": 1,
+    "records_without_sources": 126,
+    "possible_state_mismatches": 3,
+    "possible_category_warnings": 46
+  },
+  "exact_duplicates": [],
+  "near_duplicates": [
+    {
+      "state": "Maharashtra",
+      "similarity": 0.843,
+      "items": [
+        {
+          "id": "c9dc89cd-bb50-42a6-996a-38bdc08b6268",
+          "title": "Western Ghats (Maharashtra sections)",
+          "state": "Maharashtra",
+          "category": "Heritage Places"
+        },
+        {
+          "id": "a69a42b7-2916-494d-9383-01d6a68e9612",
+          "title": "Western Ghats (Sahyadri) – Maharashtra sections",
+          "state": "Maharashtra",
+          "category": "Natural Heritage"
+        }
+      ]
+    },
+    {
+      "state": "Maharashtra",
+      "similarity": 0.912,
+      "items": [
+        {
+          "id": "07f5f691-5236-42fb-be68-ad31b33ed472",
+          "title": "Maratha Hill Forts – Raigad",
+          "state": "Maharashtra",
+          "category": "Architecture"
+        },
+        {
+          "id": "86fa30e7-3b6d-4f4f-a97b-f4eef37a0a81",
+          "title": "Maratha Hill Forts – Pratapgad",
+          "state": "Maharashtra",
+          "category": "Architecture"
+        }
+      ]
+    },
+    {
+      "state": "Madhya Pradesh",
+      "similarity": 0.827,
+      "items": [
+        {
+          "id": "41392da9-4f36-40eb-97f4-a1912e8e938c",
+          "title": "Folk & Oral Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Folk & Oral Heritage"
+        },
+        {
+          "id": "c92558dd-c9c5-40c8-af95-9a9f728eff34",
+          "title": "Historical Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Historical Heritage"
+        }
+      ]
+    },
+    {
+      "state": "Madhya Pradesh",
+      "similarity": 0.833,
+      "items": [
+        {
+          "id": "41392da9-4f36-40eb-97f4-a1912e8e938c",
+          "title": "Folk & Oral Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Folk & Oral Heritage"
+        },
+        {
+          "id": "cb9b8dad-1b70-4a96-ada9-1c8b1dc7aa60",
+          "title": "Natural Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Natural Heritage"
+        }
+      ]
+    },
+    {
+      "state": "Madhya Pradesh",
+      "similarity": 0.873,
+      "items": [
+        {
+          "id": "c92558dd-c9c5-40c8-af95-9a9f728eff34",
+          "title": "Historical Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Historical Heritage"
+        },
+        {
+          "id": "cb9b8dad-1b70-4a96-ada9-1c8b1dc7aa60",
+          "title": "Natural Heritage of Madhya Pradesh",
+          "state": "Madhya Pradesh",
+          "category": "Natural Heritage"
+        }
+      ]
+    }
+  ],
+  "test_records": [],
+  "missing_data": [],
+  "title_issues": [
+    {
+      "id": "2faedd03-8d96-44dc-921c-cd97baa23af5",
+      "title": "festivals",
+      "state": "Madhya Pradesh",
+      "category": "Festivals",
+      "issues": [
+        "starts with lowercase letter"
+      ]
+    }
+  ],
+  "records_without_sources": [
+    {
+      "id": "6e7dc06a-3811-4310-8e2b-1504d5a23c26",
+      "title": "Folk and Oral Heritage of Maharashtra",
+      "state": "Maharashtra",
+      "category": "Folk & Oral Heritage"
+    },
+    {
+      "id": "98ea24cb-a82f-4802-8d22-416b98c24df4",
+      "title": "Traditional Food of Maharashtra",
+      "state": "Maharashtra",
+      "category": "Food"
+    },
+    {
+      "id": "2fa7d866-a329-40d3-8dd8-f4af874fae1b",
+      "title": "Architectures",
+      "state": "Madhya Pradesh",
+      "category": "Architecture"
+    },
+    {
+      "id": "2a0f62bb-8bed-4d06-a8e3-f0e7ece3e888",
+      "title": "Ellora Caves",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "740f1d19-9ba2-41e1-b8e3-5d582f570497",
+      "title": "Elephanta Caves",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "8eb705bc-10f1-4ef5-a164-04cf4393e9cb",
+      "title": "Maharashtra Traditional Attire: Dhoti–Kurta with Pheta and Nauvari Saree",
+      "state": "Maharashtra",
+      "category": "Clothing"
+    },
+    {
+      "id": "52e8116e-6990-47df-b4e2-42c200cc7a1a",
+      "title": "Lavani and Koli: Maharashtra’s Signature Folk Dances",
+      "state": "Maharashtra",
+      "category": "Dance"
+    },
+    {
+      "id": "4b912053-dc86-4a0b-ad95-9f08b9598bbb",
+      "title": "Chhatrapati Shivaji Maharaj Terminus (CSMT)",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "c9dc89cd-bb50-42a6-996a-38bdc08b6268",
+      "title": "Western Ghats (Maharashtra sections)",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "8f6e5718-e5a6-43f2-98be-6feab61f0b1a",
+      "title": "Victorian Gothic and Art Deco Ensembles of Mumbai",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "9f42bc7e-786f-4eea-bfbc-21e700a31c52",
+      "title": "Maratha Military Landscapes of India",
+      "state": "Maharashtra",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "fe447d94-9c5f-4017-ac4c-7ad6e3375462",
+      "title": "Chanderi Sarees (Ashoknagar district) & Gond Painting (tribal art, central MP)",
+      "state": "Madhya Pradesh",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "f2d23010-249d-423c-927c-897bad10280f",
+      "title": "Men’s Traditional Dress & Women’s Traditional Dress",
+      "state": "Madhya Pradesh",
+      "category": "Clothing"
+    },
+    {
+      "id": "51683331-c031-4f4a-bf49-05bd023c3261",
+      "title": "Historical Heritage",
+      "state": "Maharashtra",
+      "category": "Historical Heritage"
+    },
+    {
+      "id": "65d64e3c-538b-4565-8068-2706675787d7",
+      "title": "Lavani",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "2eb55973-4902-44aa-8daf-79e797941fad",
+      "title": "Kirtan (Warkari and Naradiya Kirtan)",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "132a69cf-4aeb-4b6e-aaad-febb5c50f458",
+      "title": "Melghat Tiger Reserve",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "04646042-2abb-4656-9ad5-fc9cac729ffa",
+      "title": "Ajanta Caves (Buddhist heritage)",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "8669372f-4081-412d-afad-f3f6d22f174e",
+      "title": "Ashtavinayak Temples",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "6cc95a0f-f590-4d5f-8fc1-862a40ddc713",
+      "title": "Tuljapur Bhavani Temple and other Shakti Peethas",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "76df9aed-ed8a-4b47-af01-6fff008b0677",
+      "title": "Warli Painting and Tribal Visual Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "4d11f6aa-c7f9-4228-ba43-f652e0446993",
+      "title": "Powada (Povada)",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "0e0a590f-aa1f-4843-af04-9f8f09025ee9",
+      "title": "Koli Geet (Koli folk songs)",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "6e46f082-a610-4626-8b16-77fcf378d648",
+      "title": "Bhavgeet",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "fb14e872-a166-420c-8412-3d4eb5a7b753",
+      "title": "Ovi",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "18802577-91b3-4e61-9da5-b4bc209cd40d",
+      "title": "Marathi classical and light music tradition",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "91d1abdd-4648-4743-be5f-96a143193f48",
+      "title": "Tribal Dances",
+      "state": "Madhya Pradesh",
+      "category": "Dance"
+    },
+    {
+      "id": "0fa126c3-0a60-406b-81cf-acd47de903c7",
+      "title": "Kaas Plateau (Kaas Pathar)",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "df294470-04d5-4071-a61a-b2735ef29c39",
+      "title": "Tadoba Andhari Tiger Reserve",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "414d1222-bdd1-416c-b61b-dff64af403fc",
+      "title": "Sanjay Gandhi (Bor) Wildlife Sanctuary and other Sahyadri sanctuaries",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "aeedafe5-7f32-4fbc-91a5-b007cc660e52",
+      "title": "Coastal and marine ecosystems of Konkan",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "c87c097c-b471-4d05-962c-c779a7106bf7",
+      "title": "Varkari Tradition and Pandharpur Wari",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "10c28bdd-c3c3-4ff6-ba9a-0c7d54282384",
+      "title": "Vitthal–Rukmini Temple, Pandharpur",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "049efa78-5128-439f-b706-78e47127dd3b",
+      "title": "Ellora Caves (Buddhist, Hindu and Jain heritage)",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "a0e3d0d8-c3c7-4156-9ec1-f7d20b6842af",
+      "title": "Elephanta Caves (Shaiva heritage)",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "30e92325-d353-424b-bcd0-eb69aac6c3be",
+      "title": "Shirdi Sai Baba Temple",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "805329a5-2420-4f8d-b145-e0b5ec421361",
+      "title": "Nashik–Trimbakeshwar and Bhimashankar Jyotirlingas",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "a69a42b7-2916-494d-9383-01d6a68e9612",
+      "title": "Western Ghats (Sahyadri) – Maharashtra sections",
+      "state": "Maharashtra",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "ae2ae6a5-24ec-4841-9d2a-d5deb006b0d0",
+      "title": "Dnyaneshwari and saint‑poet legacy",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "1b323c3c-e89f-4344-913c-62c618e26f29",
+      "title": "Mahadev Koli Ecological and Medicinal Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "5a5c5c19-c50c-412e-9f3b-443ff3047926",
+      "title": "Indigenous Agricultural and Water‑Management Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "249efa23-e5f0-4c51-9007-48477ce081d9",
+      "title": "Traditional Pottery and Earthen Craft Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "10b7cacc-208f-4808-b6d3-c61542f99660",
+      "title": "Paithani Weaving and Textile Craft Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "3d5d74d5-2d18-4b36-b5ca-530c260cf566",
+      "title": "Folk Performance and Oral Knowledge (Powada, Kirtan, Abhang)",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "2faedd03-8d96-44dc-921c-cd97baa23af5",
+      "title": "festivals",
+      "state": "Madhya Pradesh",
+      "category": "Festivals"
+    },
+    {
+      "id": "cf0279ad-8551-48ec-bfe0-07810d406920",
+      "title": "Most Famous Food of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Food"
+    },
+    {
+      "id": "c5376ff8-def4-482d-9066-11a5b042714c",
+      "title": "Ganesh Chaturthi",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "858b2c57-e436-4d4b-ab52-5856b4d9074f",
+      "title": "Gudi Padwa",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "da3e24fa-ec7f-47a4-97ec-8c09f143c4dc",
+      "title": "Pandharpur Wari (Ashadhi Ekadashi)",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "f9d7ebf3-2b39-463a-b2d3-92396758ec40",
+      "title": "Dahi Handi (Gokulashtami / Janmashtami)",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "1840aa72-8257-4465-9747-132e85500e2e",
+      "title": "Makar Sankranti",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "5e05b0be-6406-424f-aa85-1e0efbdef77c",
+      "title": "Diwali",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "d823ce8c-10ce-4922-8586-cf117f307a59",
+      "title": "Kojagiri Pournima",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "a1128277-6b85-4baf-b714-b10950aac87f",
+      "title": "Nag Panchami",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "41392da9-4f36-40eb-97f4-a1912e8e938c",
+      "title": "Folk & Oral Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Folk & Oral Heritage"
+    },
+    {
+      "id": "94d4bffd-0025-49f6-842e-22b694643e14",
+      "title": "Vat Pournima",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "8055cf87-80a3-4c79-ab4b-dbfa5b0d6f8d",
+      "title": "Shivaji Maharaj Jayanti",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "d1faa37a-c490-426d-acf7-2f8d421bc26f",
+      "title": "Heritage Places of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "c92558dd-c9c5-40c8-af95-9a9f728eff34",
+      "title": "Historical Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Historical Heritage"
+    },
+    {
+      "id": "7d98b8ba-ade9-467b-a19b-ad4fc3704014",
+      "title": "Paithani Sarees",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "3b8d186d-6368-45bd-9c86-ca9e13e09be8",
+      "title": "Narayan Peth Sarees",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "cd33ec7a-db6c-437d-b883-2cb0d46dd588",
+      "title": "Warli Painting",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "598e1fd4-90e3-4afe-a2b3-d7b855cbf734",
+      "title": "Kolhapuri Chappals",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "fbad377d-65c9-4033-9a4e-49d1b64950d0",
+      "title": "Heritage Places in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "1c75e972-d39d-4bf9-a5bd-6bd3130a9884",
+      "title": "Pola",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "680497f1-68e4-4a57-acfc-92f208d8d16e",
+      "title": "Himroo and Mashru Fabrics",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "cb9b8dad-1b70-4a96-ada9-1c8b1dc7aa60",
+      "title": "Natural Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "09b1615f-98f7-4b1b-a551-c2740c8589ef",
+      "title": "Bidriware and Metal Crafts",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "2086d505-d721-4ffe-9178-23447f05d1e2",
+      "title": "Traditional Knowledge of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "76ffa63d-f9a8-45dd-91d3-2d63256e8590",
+      "title": "Narali Pournima",
+      "state": "Maharashtra",
+      "category": "Festivals"
+    },
+    {
+      "id": "2f309872-9cde-4346-93f8-8500bb1b6592",
+      "title": "Music of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Music"
+    },
+    {
+      "id": "bc560311-1445-4869-90a1-d2d0fca6c9d5",
+      "title": "Gondhal and Ritual Paintings",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "35cace33-4155-4b13-9d8f-c2f6b0aba3d7",
+      "title": "Leather Shadow Puppets",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "6ac5ac4b-c0b0-4211-87c1-0e74a0d1c559",
+      "title": "Pottery and Terracotta",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "ad0ac457-ecbc-4d57-b23e-e36b9ac8cce5",
+      "title": "Woodwork and Lacquerware",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "10bbc11d-93ca-4ada-9f5d-01c039853df7",
+      "title": "Religious & Spiritual Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "8d9a6188-cd89-4635-ab03-edefec85fdaa",
+      "title": "Architecture of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Architecture"
+    },
+    {
+      "id": "9367d9fe-cd8c-4ddc-83a5-874cfe3a967c",
+      "title": "Arts & Crafts of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "e35e961e-a0bc-4a1d-a7b3-993e91681bb2",
+      "title": "Clothing in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Clothing"
+    },
+    {
+      "id": "28aac4ec-a054-445b-9563-6871703ae200",
+      "title": "Famous Dances of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Dance"
+    },
+    {
+      "id": "c6fd60aa-4c0a-4023-a645-167e6dd239ff",
+      "title": "Festivals in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Festivals"
+    },
+    {
+      "id": "8d5836c9-8beb-4bda-ba9a-35e9f4f02f40",
+      "title": "Folks & Oral Heritage of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Folk & Oral Heritage"
+    },
+    {
+      "id": "aa9001d7-3f95-487d-b8ae-47708e32e749",
+      "title": "Top Lakshadweep Foods",
+      "state": "Lakshadweep",
+      "category": "Food"
+    },
+    {
+      "id": "1ed0c341-468a-4147-ad82-de3582a39b1a",
+      "title": "Coastal and Island Forts – Sindhudurg and Suvarnadurg",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "21cc2a83-a1a5-49ae-8c0c-a0dc29568a13",
+      "title": "Historical Heritage in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Historical Heritage"
+    },
+    {
+      "id": "31d8ed25-d19c-494c-af15-11cd18000414",
+      "title": "Natural Heritage of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "63c11ce9-c8f4-4972-ac33-3ea9311deff4",
+      "title": "Ajanta Caves",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "d680344d-35fe-457a-8d26-68e08e9a55cc",
+      "title": "Ellora Caves (including Kailasa Temple)",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "e27831bc-726d-4731-ad65-4d1147394590",
+      "title": "Karla and Bhaja Caves",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "652ddea2-5654-4560-8ea7-062cc7c062ae",
+      "title": "Hemadpanthi Temples (e.g., Gondeshwar at Sinnar, Amruteshwar at Ratangad)",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "07f5f691-5236-42fb-be68-ad31b33ed472",
+      "title": "Maratha Hill Forts – Raigad",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "86fa30e7-3b6d-4f4f-a97b-f4eef37a0a81",
+      "title": "Maratha Hill Forts – Pratapgad",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "8ccba75a-cd83-47c7-9a63-6c6802338eff",
+      "title": "Maratha Hill Forts – Rajgad and Torna",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "fd5b10b4-b0f5-4a86-8c54-c75e42e18985",
+      "title": "Indo‑Islamic Monument – Bibi Ka Maqbara",
+      "state": "Maharashtra",
+      "category": "Architecture"
+    },
+    {
+      "id": "a37301e2-1d29-4d33-9c47-4683d1384ce3",
+      "title": "Lakshadweep’s Religious & Spiritual Heritage",
+      "state": "Lakshadweep",
+      "category": "Religious & Spiritual Heritage"
+    },
+    {
+      "id": "c54cd808-ca38-4b13-a3ff-86278c0fd5d0",
+      "title": "Lakshadweep’s Traditional Knowledge",
+      "state": "Lakshadweep",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "eb28a30d-fe6f-4e90-bcf9-5beb5a010d15",
+      "title": "Arts and Crafts of Ladakh",
+      "state": "Ladakh",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "01af7889-fa19-4c12-8715-f65e932a9dd5",
+      "title": "Shree Shree Govindajee Temple (Imphal)",
+      "state": "Manipur",
+      "category": "Architecture"
+    },
+    {
+      "id": "c128d6a1-9423-4b77-b158-803ed894d09a",
+      "title": "Kangla Fort and Palace Complex (Imphal)",
+      "state": "Manipur",
+      "category": "Architecture"
+    },
+    {
+      "id": "819b13cf-4012-4a9d-ae69-3f4e42db7493",
+      "title": "Traditional Manipuri Houses (Valley and Hills)",
+      "state": "Manipur",
+      "category": "Architecture"
+    },
+    {
+      "id": "c7355f7f-f72e-42ab-850f-c4890aa5bf5e",
+      "title": "Architecture of Ladakh",
+      "state": "Ladakh",
+      "category": "Architecture"
+    },
+    {
+      "id": "0791b031-9a3c-4bb1-9744-f13f66e70d82",
+      "title": "Moirang Phee (Traditional Handloom Textile)",
+      "state": "Manipur",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "49ec5242-9849-4d5f-ab25-ead284ae8e61",
+      "title": "Longpi (Nungbi) Black Pottery",
+      "state": "Manipur",
+      "category": "Architecture"
+    },
+    {
+      "id": "08279987-879d-4373-9b3c-8b32064f8819",
+      "title": "Cane and Bamboo Crafts",
+      "state": "Manipur",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "6d6b498c-7690-40e5-9dea-9c19db1bb320",
+      "title": "Handloom Shawls and Inaphi (Women’s Wrap)",
+      "state": "Manipur",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "88e1b853-9f23-4b61-9b9d-4f2ac578e960",
+      "title": "Traditional Clothing of Ladakh",
+      "state": "Ladakh",
+      "category": "Clothing"
+    },
+    {
+      "id": "340c7c9e-fcd6-4de1-ad40-60a06b167027",
+      "title": "Phanek and Innaphi (Women’s Traditional Dress)",
+      "state": "Manipur",
+      "category": "Clothing"
+    },
+    {
+      "id": "56cd2bdb-7467-4c2c-b5e1-045f0f1f8199",
+      "title": "Men’s Traditional Dress (Dhoti, Kurta/Jacket, Pagri)",
+      "state": "Maharashtra",
+      "category": "Clothing"
+    },
+    {
+      "id": "5ec0dbe8-d4b8-4a40-b78d-dab0c71be4bd",
+      "title": "Dances of Ladakh",
+      "state": "Ladakh",
+      "category": "Dance"
+    },
+    {
+      "id": "d45d3e84-9ca4-4a84-adc6-0f07d20572ba",
+      "title": "Potloi (Classical Dance Costume)",
+      "state": "Manipur",
+      "category": "Clothing"
+    },
+    {
+      "id": "676a3257-fb15-4eed-8843-c0774b267f06",
+      "title": "Tribal Attire (Naga, Kuki, and Other Communities)",
+      "state": "Manipur",
+      "category": "Clothing"
+    },
+    {
+      "id": "7d64d050-cd26-4e49-ad39-8142ace0107c",
+      "title": "Folk and Oral Heritage of Ladakh",
+      "state": "Ladakh",
+      "category": "Folk & Oral Heritage"
+    },
+    {
+      "id": "8652768e-acb5-4ae5-9f39-07648ee1827f",
+      "title": "Foods in Ladakh",
+      "state": "Ladakh",
+      "category": "Food"
+    },
+    {
+      "id": "2c699aae-7be5-4c8c-a1e8-16c5373845d2",
+      "title": "Historical Heritage Sites in Ladakh",
+      "state": "Ladakh",
+      "category": "Historical Heritage"
+    },
+    {
+      "id": "88fc32cc-8a31-415d-87d4-e92d0caa7f93",
+      "title": "Vaishnava Temples of Manipur (Regional Style)",
+      "state": "Manipur",
+      "category": "Architecture"
+    },
+    {
+      "id": "a673130f-b576-45d8-b66b-166ee77524ac",
+      "title": "Music in Ladakh",
+      "state": "Ladakh",
+      "category": "Music"
+    },
+    {
+      "id": "3b4d3495-15c1-4b77-9a3f-3787038b5bf9",
+      "title": "Traditional Knowledge in Ladakh",
+      "state": "Ladakh",
+      "category": "Traditional Knowledge"
+    },
+    {
+      "id": "ba0438ff-592f-4ea0-9b25-93848c077136",
+      "title": "Natural Heritage in Ladakh",
+      "state": "Ladakh",
+      "category": "Natural Heritage"
+    },
+    {
+      "id": "6ad3a5fe-6d71-4ce3-a06f-c7a7528eaf6d",
+      "title": "Music of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Music"
+    },
+    {
+      "id": "40a3de4f-1ef0-4faa-8de0-194d47d54783",
+      "title": "Abhang",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "ab513376-eb3f-4468-80a5-64c266dcb0b2",
+      "title": "Gondhal and Jagran songs",
+      "state": "Maharashtra",
+      "category": "Music"
+    },
+    {
+      "id": "31d966b5-cd07-4715-a565-231e22fa82e3",
+      "title": "Arts and Crafts of Kerala",
+      "state": "Kerala",
+      "category": "Arts & Crafts"
+    },
+    {
+      "id": "a4b3b58d-4b24-4420-a9db-b69c52ebcc1a",
+      "title": "Heritage Places in Ladakh",
+      "state": "Ladakh",
+      "category": "Heritage Places"
+    },
+    {
+      "id": "a38904ca-96e7-4892-b41c-3a8b33c9f795",
+      "title": "Traditional Clothing",
+      "state": "Kerala",
+      "category": "Clothing"
+    },
+    {
+      "id": "4b38b312-ddb7-4e99-9b50-0d086352ad22",
+      "title": "Traditional Dances of Kerala",
+      "state": "Kerala",
+      "category": "Dance"
+    },
+    {
+      "id": "eb73ba28-98b4-44d7-89f8-ce75eff36a84",
+      "title": "Architectural Styles in Kerala",
+      "state": "Kerala",
+      "category": "Architecture"
+    }
+  ],
+  "possible_state_mismatches": [
+    {
+      "id": "f2d23010-249d-423c-927c-897bad10280f",
+      "title": "Men’s Traditional Dress & Women’s Traditional Dress",
+      "state": "Madhya Pradesh",
+      "category": "Clothing",
+      "other_states_mentioned_in_description": [
+        "Gujarat",
+        "Rajasthan"
+      ]
+    },
+    {
+      "id": "8d9a6188-cd89-4635-ab03-edefec85fdaa",
+      "title": "Architecture of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Architecture",
+      "other_states_mentioned_in_description": [
+        "Kerala"
+      ]
+    },
+    {
+      "id": "c6fd60aa-4c0a-4023-a645-167e6dd239ff",
+      "title": "Festivals in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Festivals",
+      "other_states_mentioned_in_description": [
+        "Kerala"
+      ]
+    }
+  ],
+  "category_warnings": [
+    {
+      "id": "6e7dc06a-3811-4310-8e2b-1504d5a23c26",
+      "title": "Folk and Oral Heritage of Maharashtra",
+      "state": "Maharashtra",
+      "category": "Folk & Oral Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs",
+        "music"
+      ]
+    },
+    {
+      "id": "52e8116e-6990-47df-b4e2-42c200cc7a1a",
+      "title": "Lavani and Koli: Maharashtra’s Signature Folk Dances",
+      "state": "Maharashtra",
+      "category": "Dance",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "song"
+      ]
+    },
+    {
+      "id": "f2d23010-249d-423c-927c-897bad10280f",
+      "title": "Men’s Traditional Dress & Women’s Traditional Dress",
+      "state": "Madhya Pradesh",
+      "category": "Clothing",
+      "possible_category": "Arts & Crafts",
+      "matched_keywords": [
+        "embroidery"
+      ]
+    },
+    {
+      "id": "65d64e3c-538b-4565-8068-2706675787d7",
+      "title": "Lavani",
+      "state": "Maharashtra",
+      "category": "Music",
+      "possible_category": "Dance",
+      "matched_keywords": [
+        "dance"
+      ]
+    },
+    {
+      "id": "2eb55973-4902-44aa-8daf-79e797941fad",
+      "title": "Kirtan (Warkari and Naradiya Kirtan)",
+      "state": "Maharashtra",
+      "category": "Music",
+      "possible_category": "Theatre",
+      "matched_keywords": [
+        "drama"
+      ]
+    },
+    {
+      "id": "76df9aed-ed8a-4b47-af01-6fff008b0677",
+      "title": "Warli Painting and Tribal Visual Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge",
+      "possible_category": "Food",
+      "matched_keywords": [
+        "rice"
+      ]
+    },
+    {
+      "id": "91d1abdd-4648-4743-be5f-96a143193f48",
+      "title": "Tribal Dances",
+      "state": "Madhya Pradesh",
+      "category": "Dance",
+      "possible_category": "Festivals",
+      "matched_keywords": [
+        "festival"
+      ]
+    },
+    {
+      "id": "c87c097c-b471-4d05-962c-c779a7106bf7",
+      "title": "Varkari Tradition and Pandharpur Wari",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "singing"
+      ]
+    },
+    {
+      "id": "10c28bdd-c3c3-4ff6-ba9a-0c7d54282384",
+      "title": "Vitthal–Rukmini Temple, Pandharpur",
+      "state": "Maharashtra",
+      "category": "Religious & Spiritual Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "music"
+      ]
+    },
+    {
+      "id": "249efa23-e5f0-4c51-9007-48477ce081d9",
+      "title": "Traditional Pottery and Earthen Craft Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge",
+      "possible_category": "Arts & Crafts",
+      "matched_keywords": [
+        "craft",
+        "pottery"
+      ]
+    },
+    {
+      "id": "10b7cacc-208f-4808-b6d3-c61542f99660",
+      "title": "Paithani Weaving and Textile Craft Knowledge",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "saree",
+        "textile"
+      ]
+    },
+    {
+      "id": "3d5d74d5-2d18-4b36-b5ca-530c260cf566",
+      "title": "Folk Performance and Oral Knowledge (Powada, Kirtan, Abhang)",
+      "state": "Maharashtra",
+      "category": "Traditional Knowledge",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "singing"
+      ]
+    },
+    {
+      "id": "2faedd03-8d96-44dc-921c-cd97baa23af5",
+      "title": "festivals",
+      "state": "Madhya Pradesh",
+      "category": "Festivals",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs",
+        "music",
+        "singing"
+      ]
+    },
+    {
+      "id": "da3e24fa-ec7f-47a4-97ec-8c09f143c4dc",
+      "title": "Pandharpur Wari (Ashadhi Ekadashi)",
+      "state": "Maharashtra",
+      "category": "Festivals",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "singing"
+      ]
+    },
+    {
+      "id": "f9d7ebf3-2b39-463a-b2d3-92396758ec40",
+      "title": "Dahi Handi (Gokulashtami / Janmashtami)",
+      "state": "Maharashtra",
+      "category": "Festivals",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "music"
+      ]
+    },
+    {
+      "id": "1840aa72-8257-4465-9747-132e85500e2e",
+      "title": "Makar Sankranti",
+      "state": "Maharashtra",
+      "category": "Festivals",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "clothing",
+        "wear"
+      ]
+    },
+    {
+      "id": "41392da9-4f36-40eb-97f4-a1912e8e938c",
+      "title": "Folk & Oral Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Folk & Oral Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs",
+        "music",
+        "musical"
+      ]
+    },
+    {
+      "id": "7d98b8ba-ade9-467b-a19b-ad4fc3704014",
+      "title": "Paithani Sarees",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "saree"
+      ]
+    },
+    {
+      "id": "3b8d186d-6368-45bd-9c86-ca9e13e09be8",
+      "title": "Narayan Peth Sarees",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "saree"
+      ]
+    },
+    {
+      "id": "cd33ec7a-db6c-437d-b883-2cb0d46dd588",
+      "title": "Warli Painting",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts",
+      "possible_category": "Dance",
+      "matched_keywords": [
+        "dance"
+      ]
+    },
+    {
+      "id": "598e1fd4-90e3-4afe-a2b3-d7b855cbf734",
+      "title": "Kolhapuri Chappals",
+      "state": "Maharashtra",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "wear"
+      ]
+    },
+    {
+      "id": "2086d505-d721-4ffe-9178-23447f05d1e2",
+      "title": "Traditional Knowledge of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Traditional Knowledge",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs"
+      ]
+    },
+    {
+      "id": "2f309872-9cde-4346-93f8-8500bb1b6592",
+      "title": "Music of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Music",
+      "possible_category": "Festivals",
+      "matched_keywords": [
+        "festival"
+      ]
+    },
+    {
+      "id": "10bbc11d-93ca-4ada-9f5d-01c039853df7",
+      "title": "Religious & Spiritual Heritage of Madhya Pradesh",
+      "state": "Madhya Pradesh",
+      "category": "Religious & Spiritual Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "music"
+      ]
+    },
+    {
+      "id": "28aac4ec-a054-445b-9563-6871703ae200",
+      "title": "Famous Dances of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Dance",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs"
+      ]
+    },
+    {
+      "id": "c6fd60aa-4c0a-4023-a645-167e6dd239ff",
+      "title": "Festivals in Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Festivals",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "music"
+      ]
+    },
+    {
+      "id": "8d5836c9-8beb-4bda-ba9a-35e9f4f02f40",
+      "title": "Folks & Oral Heritage of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Folk & Oral Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "song",
+        "songs"
+      ]
+    },
+    {
+      "id": "31d8ed25-d19c-494c-af15-11cd18000414",
+      "title": "Natural Heritage of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Natural Heritage",
+      "possible_category": "Food",
+      "matched_keywords": [
+        "fish"
+      ]
+    },
+    {
+      "id": "d680344d-35fe-457a-8d26-68e08e9a55cc",
+      "title": "Ellora Caves (including Kailasa Temple)",
+      "state": "Maharashtra",
+      "category": "Architecture",
+      "possible_category": "Festivals",
+      "matched_keywords": [
+        "celebrated"
+      ]
+    },
+    {
+      "id": "652ddea2-5654-4560-8ea7-062cc7c062ae",
+      "title": "Hemadpanthi Temples (e.g., Gondeshwar at Sinnar, Amruteshwar at Ratangad)",
+      "state": "Maharashtra",
+      "category": "Architecture",
+      "possible_category": "Arts & Crafts",
+      "matched_keywords": [
+        "carving"
+      ]
+    },
+    {
+      "id": "a37301e2-1d29-4d33-9c47-4683d1384ce3",
+      "title": "Lakshadweep’s Religious & Spiritual Heritage",
+      "state": "Lakshadweep",
+      "category": "Religious & Spiritual Heritage",
+      "possible_category": "Festivals",
+      "matched_keywords": [
+        "festival"
+      ]
+    },
+    {
+      "id": "c54cd808-ca38-4b13-a3ff-86278c0fd5d0",
+      "title": "Lakshadweep’s Traditional Knowledge",
+      "state": "Lakshadweep",
+      "category": "Traditional Knowledge",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs"
+      ]
+    },
+    {
+      "id": "eb28a30d-fe6f-4e90-bcf9-5beb5a010d15",
+      "title": "Arts and Crafts of Ladakh",
+      "state": "Ladakh",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "clothing"
+      ]
+    },
+    {
+      "id": "0791b031-9a3c-4bb1-9744-f13f66e70d82",
+      "title": "Moirang Phee (Traditional Handloom Textile)",
+      "state": "Manipur",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "textile"
+      ]
+    },
+    {
+      "id": "49ec5242-9849-4d5f-ab25-ead284ae8e61",
+      "title": "Longpi (Nungbi) Black Pottery",
+      "state": "Manipur",
+      "category": "Architecture",
+      "possible_category": "Arts & Crafts",
+      "matched_keywords": [
+        "craft",
+        "pottery"
+      ]
+    },
+    {
+      "id": "23d32387-3514-484c-9209-7a409c188e32",
+      "title": "Sankirtana",
+      "state": "Manipur",
+      "category": "Music and Dance",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "singing",
+        "drumming"
+      ]
+    },
+    {
+      "id": "1c2f8ff0-367b-4aa8-8720-9f85efabf25f",
+      "title": "Buddhist chanting of Ladakh",
+      "state": "Ladakh",
+      "category": "Music and Chanting",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "chanting"
+      ]
+    },
+    {
+      "id": "07aa28d3-e9d4-447e-a587-6f067132c847",
+      "title": "Kalbelia folk songs and dances of Rajasthan",
+      "state": "Rajasthan",
+      "category": "Music and Dance",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs"
+      ]
+    },
+    {
+      "id": "0ee52a8c-9846-4d03-9ba7-acdc2249311c",
+      "title": "Ramman",
+      "state": "Uttarakhand",
+      "category": "Festival and Theatre",
+      "possible_category": "Theatre",
+      "matched_keywords": [
+        "theatre",
+        "ritual theatre"
+      ]
+    },
+    {
+      "id": "d45d3e84-9ca4-4a84-adc6-0f07d20572ba",
+      "title": "Potloi (Classical Dance Costume)",
+      "state": "Manipur",
+      "category": "Clothing",
+      "possible_category": "Dance",
+      "matched_keywords": [
+        "dance"
+      ]
+    },
+    {
+      "id": "7d64d050-cd26-4e49-ad39-8142ace0107c",
+      "title": "Folk and Oral Heritage of Ladakh",
+      "state": "Ladakh",
+      "category": "Folk & Oral Heritage",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "songs",
+        "music"
+      ]
+    },
+    {
+      "id": "2c699aae-7be5-4c8c-a1e8-16c5373845d2",
+      "title": "Historical Heritage Sites in Ladakh",
+      "state": "Ladakh",
+      "category": "Historical Heritage",
+      "possible_category": "Festivals",
+      "matched_keywords": [
+        "festival"
+      ]
+    },
+    {
+      "id": "3b4d3495-15c1-4b77-9a3f-3787038b5bf9",
+      "title": "Traditional Knowledge in Ladakh",
+      "state": "Ladakh",
+      "category": "Traditional Knowledge",
+      "possible_category": "Food",
+      "matched_keywords": [
+        "food"
+      ]
+    },
+    {
+      "id": "6ad3a5fe-6d71-4ce3-a06f-c7a7528eaf6d",
+      "title": "Music of Lakshadweep",
+      "state": "Lakshadweep",
+      "category": "Music",
+      "possible_category": "Dance",
+      "matched_keywords": [
+        "dance"
+      ]
+    },
+    {
+      "id": "31d966b5-cd07-4715-a565-231e22fa82e3",
+      "title": "Arts and Crafts of Kerala",
+      "state": "Kerala",
+      "category": "Arts & Crafts",
+      "possible_category": "Clothing",
+      "matched_keywords": [
+        "saree",
+        "textile"
+      ]
+    },
+    {
+      "id": "4b38b312-ddb7-4e99-9b50-0d086352ad22",
+      "title": "Traditional Dances of Kerala",
+      "state": "Kerala",
+      "category": "Dance",
+      "possible_category": "Music",
+      "matched_keywords": [
+        "musical"
+      ]
+    }
+  ]
+}

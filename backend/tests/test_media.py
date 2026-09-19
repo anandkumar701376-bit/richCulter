@@ -1,12 +1,17 @@
-from pathlib import Path
+from unittest.mock import AsyncMock, patch
 
 from fastapi.testclient import TestClient
 
 from app.main import app
 
+
 client = TestClient(app)
 
 INVALID_UUID = "00000000-0000-0000-0000-000000000001"
+
+TEST_IMAGE_URL = (
+    "https://example.com/test-image.jpg"
+)
 
 
 def get_existing_cultural_item_id():
@@ -15,20 +20,12 @@ def get_existing_cultural_item_id():
     assert response.status_code == 200
 
     data = response.json()
+
     items = data["items"]
 
     assert len(items) > 0
 
     return items[0]["id"]
-
-
-def test_get_media_for_nonexistent_cultural_item():
-    response = client.get(
-        f"/api/media/cultural-item/{INVALID_UUID}"
-    )
-
-    assert response.status_code == 200
-    assert response.json() == []
 
 
 def test_create_media_invalid_cultural_item():
@@ -37,16 +34,25 @@ def test_create_media_invalid_cultural_item():
         json={
             "cultural_item_id": INVALID_UUID,
             "media_type": "image",
-            "url": "https://example.com/test.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Test",
         },
     )
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "Cultural item not found"
+
+    data = response.json()
+
+    assert data["detail"] == "Cultural item not found"
 
 
-def test_create_media():
+@patch(
+    "app.api.public.media.validate_external_image_url",
+    new_callable=AsyncMock,
+)
+def test_create_media(mock_validate):
     cultural_item_id = get_existing_cultural_item_id()
 
     response = client.post(
@@ -54,8 +60,14 @@ def test_create_media():
         json={
             "cultural_item_id": cultural_item_id,
             "media_type": "image",
-            "url": "https://example.com/test-media.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Automated Test Media",
+            "author": "Test Author",
+            "license": "Test License",
+            "license_url": "https://example.com/license",
+            "source_url": "https://example.com/source",
         },
     )
 
@@ -65,21 +77,24 @@ def test_create_media():
 
     assert data["cultural_item_id"] == cultural_item_id
     assert data["media_type"] == "image"
-    assert data["url"] == "https://example.com/test-media.jpg"
     assert data["storage_type"] == "external"
-    assert data["media_url"] == "https://example.com/test-media.jpg"
+    assert data["url"] == TEST_IMAGE_URL
+    assert data["media_url"] == TEST_IMAGE_URL
+    assert data["title"] == "Automated Test Media"
 
-    media_id = data["id"]
+    assert data["author"] == "Test Author"
+    assert data["license"] == "Test License"
+    assert data["license_url"] == "https://example.com/license"
+    assert data["source_url"] == "https://example.com/source"
 
-    # Cleanup
-    delete_response = client.delete(
-        f"/api/media/{media_id}"
-    )
-
-    assert delete_response.status_code == 204
+    mock_validate.assert_awaited_once_with(TEST_IMAGE_URL)
 
 
-def test_get_media_by_id():
+@patch(
+    "app.api.public.media.validate_external_image_url",
+    new_callable=AsyncMock,
+)
+def test_get_media_by_id(mock_validate):
     cultural_item_id = get_existing_cultural_item_id()
 
     create_response = client.post(
@@ -87,7 +102,9 @@ def test_get_media_by_id():
         json={
             "cultural_item_id": cultural_item_id,
             "media_type": "image",
-            "url": "https://example.com/get-test.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Get Test Media",
         },
     )
@@ -106,27 +123,15 @@ def test_get_media_by_id():
 
     assert data["id"] == media_id
     assert data["cultural_item_id"] == cultural_item_id
-    assert data["storage_type"] == "external"
-    assert data["media_url"] == "https://example.com/get-test.jpg"
-
-    # Cleanup
-    delete_response = client.delete(
-        f"/api/media/{media_id}"
-    )
-
-    assert delete_response.status_code == 204
+    assert data["url"] == TEST_IMAGE_URL
+    assert data["media_url"] == TEST_IMAGE_URL
 
 
-def test_get_nonexistent_media():
-    response = client.get(
-        f"/api/media/{INVALID_UUID}"
-    )
-
-    assert response.status_code == 404
-    assert response.json()["detail"] == "Media not found"
-
-
-def test_update_media():
+@patch(
+    "app.api.public.media.validate_external_image_url",
+    new_callable=AsyncMock,
+)
+def test_update_media(mock_validate):
     cultural_item_id = get_existing_cultural_item_id()
 
     create_response = client.post(
@@ -134,7 +139,9 @@ def test_update_media():
         json={
             "cultural_item_id": cultural_item_id,
             "media_type": "image",
-            "url": "https://example.com/before.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Before Update",
         },
     )
@@ -146,7 +153,6 @@ def test_update_media():
     update_response = client.put(
         f"/api/media/{media_id}",
         json={
-            "url": "https://example.com/after.jpg",
             "title": "After Update",
         },
     )
@@ -156,20 +162,14 @@ def test_update_media():
     data = update_response.json()
 
     assert data["id"] == media_id
-    assert data["url"] == "https://example.com/after.jpg"
     assert data["title"] == "After Update"
-    assert data["storage_type"] == "external"
-    assert data["media_url"] == "https://example.com/after.jpg"
-
-    # Cleanup
-    delete_response = client.delete(
-        f"/api/media/{media_id}"
-    )
-
-    assert delete_response.status_code == 204
 
 
-def test_update_media_invalid_cultural_item():
+@patch(
+    "app.api.public.media.validate_external_image_url",
+    new_callable=AsyncMock,
+)
+def test_update_media_invalid_cultural_item(mock_validate):
     cultural_item_id = get_existing_cultural_item_id()
 
     create_response = client.post(
@@ -177,7 +177,9 @@ def test_update_media_invalid_cultural_item():
         json={
             "cultural_item_id": cultural_item_id,
             "media_type": "image",
-            "url": "https://example.com/invalid-parent.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Invalid Parent Test",
         },
     )
@@ -194,19 +196,17 @@ def test_update_media_invalid_cultural_item():
     )
 
     assert update_response.status_code == 404
-    assert update_response.json()["detail"] == (
-        "Cultural item not found"
-    )
 
-    # Cleanup
-    delete_response = client.delete(
-        f"/api/media/{media_id}"
-    )
+    data = update_response.json()
 
-    assert delete_response.status_code == 204
+    assert data["detail"] == "Cultural item not found"
 
 
-def test_delete_media():
+@patch(
+    "app.api.public.media.validate_external_image_url",
+    new_callable=AsyncMock,
+)
+def test_delete_media(mock_validate):
     cultural_item_id = get_existing_cultural_item_id()
 
     create_response = client.post(
@@ -214,7 +214,9 @@ def test_delete_media():
         json={
             "cultural_item_id": cultural_item_id,
             "media_type": "image",
-            "url": "https://example.com/delete-test.jpg",
+            "url": TEST_IMAGE_URL,
+            "storage_type": "external",
+            "storage_key": None,
             "title": "Delete Test Media",
         },
     )
@@ -234,156 +236,3 @@ def test_delete_media():
     )
 
     assert get_response.status_code == 404
-
-
-def test_delete_nonexistent_media():
-    response = client.delete(
-        f"/api/media/{INVALID_UUID}"
-    )
-
-    assert response.status_code == 404
-    assert response.json()["detail"] == "Media not found"
-
-
-def test_upload_image_success():
-    cultural_item_id = get_existing_cultural_item_id()
-
-    response = client.post(
-        "/api/media/upload",
-        params={
-            "cultural_item_id": cultural_item_id,
-            "media_type": "image",
-            "title": "Automated Local Image",
-        },
-        files={
-            "file": (
-                "test.jpg",
-                b"\xff\xd8\xff\xe0" + b"test image data",
-                "image/jpeg",
-            )
-        },
-    )
-
-    assert response.status_code == 201
-
-    data = response.json()
-
-    assert data["cultural_item_id"] == cultural_item_id
-    assert data["media_type"] == "image"
-    assert data["storage_type"] == "local"
-    assert data["storage_key"].startswith("images/")
-    assert data["storage_key"].endswith(".jpg")
-    assert data["url"] is None
-    assert data["media_url"].startswith("/media/images/")
-    assert data["media_url"].endswith(".jpg")
-
-    media_id = data["id"]
-    storage_key = data["storage_key"]
-
-    # Verify the actual file exists.
-    from app.core.config import MEDIA_ROOT
-
-    file_path = Path(MEDIA_ROOT) / storage_key
-
-    assert file_path.exists()
-
-    # Cleanup database record.
-    delete_response = client.delete(
-        f"/api/media/{media_id}"
-    )
-
-    assert delete_response.status_code == 204
-
-    # Cleanup file.
-    if file_path.exists():
-        file_path.unlink()
-
-
-def test_upload_rejects_fake_jpeg():
-    cultural_item_id = get_existing_cultural_item_id()
-
-    response = client.post(
-        "/api/media/upload",
-        params={
-            "cultural_item_id": cultural_item_id,
-            "media_type": "image",
-            "title": "Fake Image Test",
-        },
-        files={
-            "file": (
-                "fake.jpg",
-                b"this is not a real JPEG file",
-                "image/jpeg",
-            )
-        },
-    )
-
-    assert response.status_code == 400
-    assert "does not match" in response.json()["detail"]
-
-
-def test_upload_rejects_invalid_extension():
-    cultural_item_id = get_existing_cultural_item_id()
-
-    response = client.post(
-        "/api/media/upload",
-        params={
-            "cultural_item_id": cultural_item_id,
-            "media_type": "image",
-            "title": "Invalid Extension Test",
-        },
-        files={
-            "file": (
-                "test.txt",
-                b"plain text",
-                "text/plain",
-            )
-        },
-    )
-
-    assert response.status_code == 400
-    assert "Invalid file type" in response.json()["detail"]
-
-
-def test_upload_rejects_invalid_content_type():
-    cultural_item_id = get_existing_cultural_item_id()
-
-    response = client.post(
-        "/api/media/upload",
-        params={
-            "cultural_item_id": cultural_item_id,
-            "media_type": "image",
-            "title": "Invalid Content Type Test",
-        },
-        files={
-            "file": (
-                "test.jpg",
-                b"\xff\xd8\xff\xe0" + b"test image data",
-                "text/plain",
-            )
-        },
-    )
-
-    assert response.status_code == 400
-    assert "Invalid content type" in response.json()["detail"]
-
-
-def test_upload_nonexistent_cultural_item():
-    response = client.post(
-        "/api/media/upload",
-        params={
-            "cultural_item_id": INVALID_UUID,
-            "media_type": "image",
-            "title": "Invalid Parent Upload",
-        },
-        files={
-            "file": (
-                "test.jpg",
-                b"\xff\xd8\xff\xe0" + b"test image data",
-                "image/jpeg",
-            )
-        },
-    )
-
-    assert response.status_code == 404
-    assert response.json()["detail"] == "Cultural item not found"

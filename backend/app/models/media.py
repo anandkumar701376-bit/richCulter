@@ -49,6 +49,26 @@ class Media(Base):
         nullable=True,
     )
 
+    author: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
+
+    license: Mapped[str | None] = mapped_column(
+        String(200),
+        nullable=True,
+    )
+
+    license_url: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
+
+    source_url: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),

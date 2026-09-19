@@ -12,16 +12,25 @@ class MediaBase(BaseModel):
     storage_key: str | None = None
     title: str | None = None
 
+    author: str | None = None
+    license: str | None = None
+    license_url: str | None = None
+    source_url: str | None = None
+
 
 class MediaCreate(MediaBase):
     pass
+
 
 class MediaResponse(MediaBase):
     id: uuid.UUID
     created_at: datetime
     media_url: str | None = None
 
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(
+        from_attributes=True
+    )
+
 
 class MediaUpdate(BaseModel):
     cultural_item_id: uuid.UUID | None = None
@@ -30,3 +39,8 @@ class MediaUpdate(BaseModel):
     storage_type: str | None = None
     storage_key: str | None = None
     title: str | None = None
+
+    author: str | None = None
+    license: str | None = None
+    license_url: str | None = None
+    source_url: str | None = None

@@ -1,13 +1,7 @@
 from uuid import uuid4
 
-from fastapi.testclient import TestClient
 
-from app.main import app
-
-client = TestClient(app)
-
-
-def test_get_categories():
+def test_get_categories(client):
     response = client.get("/api/categories")
 
     assert response.status_code == 200
@@ -18,7 +12,7 @@ def test_get_categories():
     assert len(data) > 0
 
 
-def test_get_category_by_id():
+def test_get_category_by_id(client):
     response = client.get("/api/categories")
 
     assert response.status_code == 200
@@ -37,7 +31,7 @@ def test_get_category_by_id():
     assert data["id"] == category_id
 
 
-def test_get_nonexistent_category():
+def test_get_nonexistent_category(client):
     invalid_id = str(uuid4())
 
     response = client.get(
@@ -47,8 +41,10 @@ def test_get_nonexistent_category():
     assert response.status_code == 404
 
 
-def test_create_category():
-    unique_name = f"Test Category {uuid4().hex[:8]}"
+def test_create_category(client):
+    unique_name = (
+        f"Test Category {uuid4().hex[:8]}"
+    )
 
     response = client.post(
         "/api/categories",
@@ -66,7 +62,6 @@ def test_create_category():
 
     category_id = data["id"]
 
-    # Cleanup
     delete_response = client.delete(
         f"/api/categories/{category_id}"
     )
@@ -74,8 +69,10 @@ def test_create_category():
     assert delete_response.status_code == 204
 
 
-def test_update_category():
-    unique_name = f"Update Category {uuid4().hex[:8]}"
+def test_update_category(client):
+    unique_name = (
+        f"Update Category {uuid4().hex[:8]}"
+    )
 
     create_response = client.post(
         "/api/categories",
@@ -89,7 +86,9 @@ def test_update_category():
 
     category_id = create_response.json()["id"]
 
-    updated_name = f"Updated Category {uuid4().hex[:8]}"
+    updated_name = (
+        f"Updated Category {uuid4().hex[:8]}"
+    )
 
     update_response = client.put(
         f"/api/categories/{category_id}",
@@ -107,7 +106,6 @@ def test_update_category():
     assert data["name"] == updated_name
     assert data["description"] == "After update"
 
-    # Cleanup
     delete_response = client.delete(
         f"/api/categories/{category_id}"
     )
@@ -115,7 +113,7 @@ def test_update_category():
     assert delete_response.status_code == 204
 
 
-def test_delete_nonexistent_category():
+def test_delete_nonexistent_category(client):
     invalid_id = str(uuid4())
 
     response = client.delete(
@@ -123,10 +121,12 @@ def test_delete_nonexistent_category():
     )
 
     assert response.status_code == 404
-    
 
-def test_create_duplicate_category():
-    unique_name = f"Duplicate Category {uuid4().hex[:8]}"
+
+def test_create_duplicate_category(client):
+    unique_name = (
+        f"Duplicate Category {uuid4().hex[:8]}"
+    )
 
     first_response = client.post(
         "/api/categories",
@@ -149,9 +149,11 @@ def test_create_duplicate_category():
     )
 
     assert duplicate_response.status_code == 409
-    assert "already exists" in duplicate_response.json()["detail"]
+    assert (
+        "already exists"
+        in duplicate_response.json()["detail"]
+    )
 
-    # Cleanup
     delete_response = client.delete(
         f"/api/categories/{category_id}"
     )
